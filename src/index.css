@@ -8,6 +8,9 @@ a{
   text-decoration: none;
 }
 
+a:focus, a:hover {
+  text-decoration: none;
+}
 
 
 /*-------------Header class--------------*/
@@ -78,3 +81,86 @@ a{
   left: 50px;
   color: #626A7C;
 }
+
+/*-------------------------------------- Get Alarm ---------------------------------*/
+/*panels*/
+.panel-default{
+  width: 349px;
+  min-height: 85px;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.panel-default>.panel-heading{
+  background-image: linear-gradient(to bottom,#ffffff 0,#ffffff 100%);
+  border: white;
+  position: relative;
+}
+
+
+.panel-heading .panel-title span:nth-of-type(1){
+  color: #0065FF;
+  font-family: BPrepalyBold;
+  font-size: 35px;
+  position: absolute;
+  top: 10px;
+  left: 80px;
+}
+
+.panel-heading .panel-title span:nth-of-type(2){
+  color: #9FA5B4;
+  font-family: BPrepalyBold;
+  font-size: 9px;
+  position: absolute;
+  top: 50px;
+  left: 120px;
+}
+
+.panel-heading .panel-title span:nth-of-type(3){
+  color: #9FA5B4;
+  font-family: BPrepalyBold;
+  font-size: 9px;
+  position: absolute;
+  top: 50px;
+  left: 85px;
+}
+
+.panel-heading .panel-title span:nth-of-type(2) img{
+  width: 10px;
+  height: 9px;
+  margin-right: 3px;
+}
+
+.panel-heading .panel-title span:nth-of-type(3) img{
+  width: 10px;
+  height: 9px;
+  margin-right: 3px;
+}
+
+.panel-body{
+  margin-top: 35px;
+}
+
+.panel-body p img{
+  width: 14px;
+  height: 16px;
+  margin-right: 3px;
+}
+
+.panel-body p:nth-child(1){
+  color: #5E636F;
+  font-family: BPreplay;
+}
+
+.panel-body p:nth-child(1){
+  color: #5E636F;
+  font-family: BPrepalyBold;
+}
+
+hr{
+  position: absolute;
+  width: 90%;
+  top: 63px;
+  color: #E5E7EE;
+}
+
