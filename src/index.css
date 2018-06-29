@@ -1,0 +1,166 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #E2E5EE;
+}
+
+a{
+  text-decoration: none;
+}
+
+a:focus, a:hover {
+  text-decoration: none;
+}
+
+
+/*-------------Header class--------------*/
+
+@font-face {
+  font-family: BPreplay;
+  src: url('./static/Bpreplay/BPreplay.otf');
+}
+
+@font-face {
+  font-family: Fresh;
+  src: url('./static/Mega\ Fresh\ -\ Demo.ttf');
+}
+
+@font-face {
+  font-family: BPrepalyBold;
+  src: url('./static/Bpreplay/BPreplayBold.otf');
+}
+
+.logo{
+  font-family: Fresh;
+}
+
+#navStyle{
+  font-family: BPreplay;
+}
+
+.setting{
+  position: relative;
+  color: #FFFFFF;
+  top: 105px;
+  width: 100%;
+}
+
+.back{
+  font-family: BPreplay;
+  font-size: 15px;
+  position: absolute;
+  left: 30px;
+  font-weight: normal;
+  color: #FFFFFF;
+}
+
+.setting a:nth-of-type(2){
+  font-size: 15px;
+  position: absolute;
+  left: 154px;
+  font-weight: bolder;
+  font-family: BPrepalyBold;
+}
+
+.alarm{
+  position: relative; 
+  top: 105px;
+  font-family: BPrepalyBold;
+}
+
+.sendAlarm{ 
+  font-size: 15px;
+  position: absolute;
+  left: 226px;
+  color: #626A7C;
+}
+
+.getAlarm{
+  font-size: 15px;
+  position: absolute;
+  left: 50px;
+  color: #626A7C;
+}
+
+/*-------------------------------------- Get Alarm ---------------------------------*/
+/*panels*/
+.panel-default{
+  width: 349px;
+  min-height: 85px;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.panel-default>.panel-heading{
+  background-image: linear-gradient(to bottom,#ffffff 0,#ffffff 100%);
+  border: white;
+  position: relative;
+}
+
+
+.panel-heading .panel-title span:nth-of-type(1){
+  color: #0065FF;
+  font-family: BPrepalyBold;
+  font-size: 35px;
+  position: absolute;
+  top: 10px;
+  left: 80px;
+}
+
+.panel-heading .panel-title span:nth-of-type(2){
+  color: #9FA5B4;
+  font-family: BPrepalyBold;
+  font-size: 9px;
+  position: absolute;
+  top: 50px;
+  left: 120px;
+}
+
+.panel-heading .panel-title span:nth-of-type(3){
+  color: #9FA5B4;
+  font-family: BPrepalyBold;
+  font-size: 9px;
+  position: absolute;
+  top: 50px;
+  left: 85px;
+}
+
+.panel-heading .panel-title span:nth-of-type(2) img{
+  width: 10px;
+  height: 9px;
+  margin-right: 3px;
+}
+
+.panel-heading .panel-title span:nth-of-type(3) img{
+  width: 10px;
+  height: 9px;
+  margin-right: 3px;
+}
+
+.panel-body{
+  margin-top: 35px;
+}
+
+.panel-body p img{
+  width: 14px;
+  height: 16px;
+  margin-right: 3px;
+}
+
+.panel-body p:nth-child(1){
+  color: #5E636F;
+  font-family: BPreplay;
+}
+
+.panel-body p:nth-child(1){
+  color: #5E636F;
+  font-family: BPrepalyBold;
+}
+
+hr{
+  position: absolute;
+  width: 90%;
+  top: 63px;
+  color: #E5E7EE;
+}
+
