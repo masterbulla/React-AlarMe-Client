@@ -41,7 +41,6 @@ class Header extends Component{
     active = {
         color: '#02DD6E'
     }
-<<<<<<< HEAD
     
     phoneUpView = {
         position: 'absolute',
@@ -50,9 +49,7 @@ class Header extends Component{
         width: '100%'
 
     }
-=======
 
->>>>>>> 321befffa0115c41f74fe74b3a5ed5a601cf8674
     
 
     constructor(props){
@@ -96,10 +93,7 @@ class Header extends Component{
     render(){
         return(
             <header style={this.headerStyle}>
-<<<<<<< HEAD
                 <img src={require('./static/phoneUpView.png')} style={this.phoneUpView} alt="phone up view picture"/>
-=======
->>>>>>> 321befffa0115c41f74fe74b3a5ed5a601cf8674
                 <NavLink  exact to='/' className="logo" style={this.LogoStyle} onClick={() => this.chackRendar('alarm')}>AlarmMe</NavLink>
                 <NavLink  exact to='/Setting' onClick={() => this.chackRendar('setting')}><img style={this.settingIcon} src={require('./static/settings.svg')} alt="setting icon" /></NavLink>
                 <NavLink  exact to='/' onClick={() => this.chackRendar('alarm')}><img style={this.alarmIcon} src={require('./static/alarm-clock.svg')}  alt="alarm icon"/></NavLink>
