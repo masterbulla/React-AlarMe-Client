@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 //import {NavLink} from 'react-router-dom';
-import Panels from './AlarmCards'
+import SendPanels from './sendAlarmCard'
 
 class Send extends Component{
 
@@ -25,6 +25,8 @@ class Send extends Component{
                     alarm: [
                     ...prevState.alarm,
                     {
+                        
+                    
                         time: data.time,
                         active: data.active,
                         morningAwakning: data.morningAwakning,
@@ -39,7 +41,7 @@ class Send extends Component{
 
       eachAlarm (data ,i) {
         return (
-            <Panels key={i} alarm={data}/>
+            <SendPanels key={i} alarm={data}/>
  
         );
       }
