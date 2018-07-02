@@ -1,0 +1,179 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogActions from '@material-ui/core/DialogActions';
+import Dialog from '@material-ui/core/Dialog';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import Radio from '@material-ui/core/Radio';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+
+const options = [
+  'Israel',
+  'Russia',
+  'United States',
+  'French',
+  'India',
+  'Argentina',
+  'Brasil',
+  'Spain',
+  'Canada',
+  'Jamaica',
+  'Sedna',
+  'Romania',
+  'Paraguay',
+  'Norway',
+];
+
+class ConfirmationDialogRaw extends React.Component {
+  radioGroup = null;
+
+  constructor(props) {
+    super(props);
+
+    this.state.value = this.props.value;
+  }
+
+  state = {};
+
+  // TODO
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.value !== this.props.value) {
+      this.setState({ value: nextProps.value });
+    }
+  }
+
+  handleEntering = () => {
+    this.radioGroup.focus();
+  };
+
+  handleCancel = () => {
+    this.props.onClose(this.props.value);
+  };
+
+  handleOk = () => {
+    this.props.onClose(this.state.value);
+  };
+
+  handleChange = (event, value) => {
+    this.setState({ value });
+    console.log(value); 
+    <ConfirmationDialog val={this.state.value}/>
+  };
+
+  render() {
+    const { value, ...other } = this.props;
+
+    return (
+      <Dialog
+        disableBackdropClick
+        disableEscapeKeyDown
+        maxWidth="xs"
+        onEntering={this.handleEntering}
+        aria-labelledby="confirmation-dialog-title"
+        {...other}
+      >
+        <DialogContent>
+          <RadioGroup
+            ref={node => {
+              this.radioGroup = node;
+            }}
+            aria-label="ringtone"
+            name="ringtone"
+            value={this.state.value}
+            onChange={this.handleChange}
+          >
+            {options.map(option => (
+              <FormControlLabel value={option} key={option} control={<Radio />} label={option} />
+            ))}
+          </RadioGroup>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={this.handleCancel} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={this.handleOk} color="primary">
+            Ok
+          </Button>
+        </DialogActions>
+      </Dialog>
+    );
+  }
+}
+
+ConfirmationDialogRaw.propTypes = {
+  onClose: PropTypes.func,
+  value: PropTypes.string,
+};
+
+const styles = theme => ({
+  root: {
+    width: '100%',
+    maxWidth: 360,
+    backgroundColor: theme.palette.background.paper,
+  },
+  paper: {
+    width: '80%',
+    maxHeight: 435,
+  },
+  country: {
+      position: 'absolute',
+      left: '-10px',
+      marginBottom: '500px'
+  }
+});
+
+class ConfirmationDialog extends React.Component {
+  button = null;
+
+  state = {
+    open: false,
+    value: 'Global',
+  };
+
+  handleClickListItem = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = value => {
+    this.setState({ value, open: false });
+  };
+
+  render() {
+    const { classes } = this.props;
+    return (
+      <div className={classes.root}>
+        <List>
+          <ListItem onClick={this.handleClickListItem}>
+          {console.log(this.props.val)}
+            <span className={classes.imgText}>{this.props.val}</span>
+            
+            
+
+            <div className={classes.country} >
+                <img src={require('../static/Rectangle.png')} alt="rectangle"/>
+                <img src={require('../static/circle.png')} alt="circle"/>
+            </div>
+          </ListItem>
+          <ConfirmationDialogRaw
+            classes={{
+              paper: classes.paper,
+            }}
+            open={this.state.open}
+            onClose={this.handleClose}
+            value={this.state.value}
+          />
+        </List>
+      </div>
+    );
+  }
+}
+
+ConfirmationDialog.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(ConfirmationDialog);

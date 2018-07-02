@@ -144,18 +144,33 @@ a:focus, a:hover {
 .panel-body p img{
   width: 14px;
   height: 16px;
-  margin-right: 3px;
-}
-
-.panel-body p:nth-child(1){
-  color: #5E636F;
-  font-family: BPreplay;
+  margin-right: 7px;
 }
 
 .panel-body p:nth-child(1){
   color: #5E636F;
   font-family: BPrepalyBold;
+  margin: 0 0 0 0;
+  padding: 0;
+  display: inline;
+  
 }
+
+.panel-body p:nth-child(2){
+  color: #5E636F;
+  font-family: BPreplay;
+  margin-top: 5px;
+}
+
+.panel-body p:nth-child(3), .panel-body p:nth-child(5){
+  font-size: 10px;
+  font-family: BPreplay;
+  color:#9FA5B4;
+   
+}
+
+
+
 
 hr{
   position: absolute;

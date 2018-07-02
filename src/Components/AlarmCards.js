@@ -1,6 +1,7 @@
 import {Panel} from 'react-bootstrap';
 import React from 'react';
 import '../index.css';
+import ConfirmationDialog from './Country';
 
 class Panels extends React.Component {
   constructor(props, context) {
@@ -26,16 +27,16 @@ class Panels extends React.Component {
   morningChack(){
     if(this.props.alarm.morningAwakning === true){
       return <p><img src={require('../static/alarm-clock.svg')} alt="alarm"/>Morning Awakening</p>
+    }else{
+      return <p></p>
     }
   }
 
   
-
-
   render() {
     return (
       <div>
-        <Panel id="collapsible-panel-example-2"  expanded={this.state.open}>
+        <Panel ontoggle={this.state.open} id="collapsible-panel-example-2"  expanded={this.state.open}>
           <Panel.Heading>
             <Panel.Title toggle>
                 <span onClick={ ()=> this.setState({ open: !this.state.open })}>{this.props.alarm.time}</span><br/>
@@ -48,9 +49,11 @@ class Panels extends React.Component {
 
           <Panel.Collapse>
             <Panel.Body>
-               {this.morningChack()}<br/>
+               {this.morningChack()}
                <p><img src={require('../static/volume-bars.svg')} alt="volume"/> Filter Alarm personal</p>
-               {this.props.alarm.filter.country}<br/>
+               <p>Country</p>
+               <ConfirmationDialog/>
+               <p>Gender</p>
                {this.props.alarm.filter.age}<br/>
                {this.props.alarm.filter.gender}<br/>
                {this.props.alarm.repeat}<br/>
