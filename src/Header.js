@@ -41,10 +41,7 @@ class Header extends Component{
     active = {
         color: '#02DD6E'
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> 344b4dda249f554fa78a3fdedc568d373f59af81
     
     phoneUpView = {
         position: 'absolute',
@@ -53,11 +50,7 @@ class Header extends Component{
         width: '100%'
 
     }
-<<<<<<< HEAD
-=======
 
-    
->>>>>>> 344b4dda249f554fa78a3fdedc568d373f59af81
 
     constructor(props){
         super(props);
