@@ -216,3 +216,38 @@ hr{
 .repeat-style{
   left: 224px !important;
 }
+
+.panel-title{
+  height: 20px !important;
+}
+
+.wake-up{
+    width: 10px;
+    position: relative;
+    left: 89px;
+    top: 16px;
+}
+
+.gender-icon{
+    width: 15px !important;
+    height: 13px;
+    position: relative;
+    bottom: 3px;
+}
+
+.age-gender{
+  color:#D8D8D8 !important;
+}
+
+.can-be{
+    font-family: Assistant;
+    color: dodgerblue;
+    position: relative;
+    bottom: 7px;
+    left: 10px;
+    font-size: 12px;
+}
+
+.opacity0{
+  opacity: 0 !important;
+}

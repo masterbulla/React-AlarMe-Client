@@ -37,15 +37,15 @@ class SendPanels extends React.Component {
     return (
       <div>
         <Panel ontoggle={this.state.open} id="collapsible-panel-example-2"  expanded={this.state.open}>
-          <Panel.Heading>
+          <Panel.Heading className={{ 'opacity0': this.state.open }}>
             <Panel.Title toggle>
                 <img className="profile-picture" src={require('../static/kim-kardashian.jpg')} alt="refresh" />
                 <span className="name-of">kim Kardashian</span>
-                <span className="time-style" onClick={ ()=> this.setState({ open: !this.state.open })}>{this.props.alarm.time}</span><br/>
-                <span className="repeat-style" onClick={ ()=> this.setState({ open: !this.state.open })}><img src={require('../static/refresh.svg')} alt="refresh" />{this.repeatCheck(this.props.alarm.repeat)}</span>
+                <img className="wake-up" src={require('../static/alarm-clock.svg')} alt="refresh" /><span className="time-style" onClick={ ()=> this.setState({ open: !this.state.open })}>{this.props.alarm.time}</span><br/>
+                <span className="repeat-style age-gender" onClick={ ()=> this.setState({ open: !this.state.open })}><img className="gender-icon" src={require('../static/woman.svg')} alt="refresh" />{this.props.alarm.filter.age}, {this.props.alarm.filter.gender}</span>
                 <span className="country-style" onClick={ ()=> this.setState({ open: !this.state.open })}><img className="global-img" src={require('../static/global.svg')} alt="global"/> {this.props.alarm.filter.country}</span>
-            
-         
+                <span className="can-be">Can be weaken in 3 minutes</span>
+                
             </Panel.Title>
           </Panel.Heading>
 
