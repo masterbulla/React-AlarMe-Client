@@ -166,10 +166,50 @@ a:focus, a:hover {
   font-size: 10px;
   font-family: BPreplay;
   color:#9FA5B4;
-   
 }
 
+.panel-body p:nth-child(5){
+  margin-top: 30px; 
+  display: inline-block;
 
+}
+
+.panel-body div:nth-child(6), .panel-body div:nth-child(7){
+  background-color: #e5e7ee;
+  border-radius: 11px;
+  width: 63px;
+  height: 18px; 
+  margin-left: 8px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  font-family: BPrepalyBold;
+  display: inline-block;
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: .116px;
+  color: #cbd1e2;
+}
+
+.panel-body div:nth-child(6):active, .panel-body div:nth-child(7):active{
+  background-image: linear-gradient(180deg, #00ff6f 0, #24e07d 1);
+  border-radius: 11px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, .4);
+  width: 63px;
+  height: 18px;
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: .116px;
+  color: #1b9e70; 
+  font-family: BPrepalyBold;
+}
+
+.panel-body p:nth-child(8){
+  color: #9FA5B4;
+  font-size: 10px;
+  font-family: BPreplay;
+  margin-top: 10px;
+}
 
 
 hr{
