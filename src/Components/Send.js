@@ -15,7 +15,7 @@ class Send extends Component{
       }
 
     componentDidMount() {
-        const url ="http://localhost:3030/sendalarm?id=1";
+        const url ="https://alarme-app.herokuapp.com/sendalarm?id=1";
         fetch(url).then((res) => {
           return res.json();
         }).then((data) => {
