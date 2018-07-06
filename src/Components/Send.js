@@ -15,7 +15,7 @@ class Send extends Component{
       }
 
     componentDidMount() {
-        const url ="https://alarme-app.herokuapp.com/sendalarm?id=1";
+        const url ="http://localhost:3030/sendalarm?id=1";
         fetch(url).then((res) => {
           return res.json();
         }).then((data) => {
@@ -31,7 +31,10 @@ class Send extends Component{
                         active: data.active,
                         morningAwakning: data.morningAwakning,
                         repeat: [data.repeat],
-                        filter: {country: data.filter.country, gender: data.filter.gender, age: data.filter.age }
+                        filter: {country: data.filter.country, gender: data.filter.gender, age: data.filter.age },
+                        creatorName: data.creatorName,
+                        creatorAge: data.creatorAge,
+                        sleepTime: data.sleepTime
                     }]
                 }))
                 return 0;

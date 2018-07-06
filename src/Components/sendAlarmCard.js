@@ -13,6 +13,7 @@ class SendPanels extends React.Component {
 
     this.repeatCheck = this.repeatCheck.bind(this);
     this.morningChack = this.morningChack.bind(this);
+    this.calculateSleptTime = this.calculateSleptTime.bind(this);
   }
 
   repeatCheck(){
@@ -30,6 +31,34 @@ class SendPanels extends React.Component {
     }else{
       return <p></p>
     }
+  }
+
+  calculateSleptTime(){
+      //takes the date of the alarm and removes quotes or spaces
+    var s  = this.props.alarm.sleepTime;
+    s = s.replace(/\"/g, '');
+    s = s.replace(/\s/g, '');
+
+    //split the time to hours and minutes
+    var time = s.split(/\:|\-/g);
+    var dat = new Date();
+    dat.setHours(time[0]);
+    dat.setMinutes(time[1]);
+
+    //calculate the sleep time from now to the set alarm time
+    var d = new Date();
+    if(d.getHours() > dat.getHours()){
+        d.setHours(d.getHours() - dat.getHours());    
+    }else{
+        d.setHours(dat.getHours() - d.getHours());  
+    }
+    if(d.getMinutes() > dat.getMinutes()){
+        d.setMinutes(d.getMinutes() - dat.getMinutes());
+    }else{
+        d.setMinutes(dat.getMinutes() - d.getMinutes());
+    }
+    var result = d.getHours() +':'+ d.getMinutes();
+    return <span>{result}</span>
   }
 
   
@@ -55,7 +84,7 @@ class SendPanels extends React.Component {
                 <div>
                   <div className="width-25-percent pos-20px-bottom">
                     <div className="D8D8D8-color">Sleep Time</div>
-                    <div className="color-626A7C">4.8</div>
+                    <div className="color-626A7C">{this.calculateSleptTime()}</div>
                     <div className="margin-bottom-25px color-626A7C">HRS</div>
                     <div className="D8D8D8-color">Gender</div>
                     <div>
@@ -72,10 +101,10 @@ class SendPanels extends React.Component {
                       <img className="flag-icon" src={require('../static/united-states.svg')} alt="usa" />
                     </div>
                     <div className="top-17px D8D8D8-color">Age</div>
-                    <div className="top-17px color-626A7C">{this.props.alarm.filter.age}</div>
+                    <div className="top-17px color-626A7C">{this.props.alarm.creatorAge}</div>
                   </div>
                 </div>
-                <div className="text-center"><span className="name-main">kim Kardashian</span></div>
+                <div className="text-center"><span className="name-main">{this.props.alarm.creatorName}</span></div>
                 <div className="text-center D8D8D8-color">{this.props.alarm.time} {this.morningChack()}</div>
                 <div className="text-center but-wake-up"><button>wake-up</button></div>
                 <div className="text-center D8D8D8-color"><span>Skip Kim</span></div>
