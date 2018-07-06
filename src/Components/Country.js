@@ -60,8 +60,6 @@ class ConfirmationDialogRaw extends React.Component {
 
   handleChange = (event, value) => {
     this.setState({ value });
-    console.log(value); 
-    <ConfirmationDialog val={this.state.value}/>
   };
 
   render() {
@@ -121,8 +119,37 @@ const styles = theme => ({
   },
   country: {
       position: 'absolute',
-      left: '-10px',
+      left: '-5px',
       marginBottom: '500px'
+  },
+  dynamicCircle: {
+    float: 'left',
+    backgroundColor: '#0065ff',
+    borderRadius: '21.5px',
+    boxShadow: '0 4px 6px rgba(0, 0, 0, .4)',
+    width: '109px',
+    height: '43px',
+    fontFamily: 'BPrepalyBold',
+    color: '#FFFFFF',
+    marginTop: '5px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  countryPick: {
+    float: 'left',
+    backgroundColor: '#0065ff',
+    borderRadius: '50%',
+    boxShadow: '0 4px 6px rgba(0, 0, 0, .4)',
+    width: '43px',
+    height: '43px',
+    margin: '5px 0px 0 5px ',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontFamily: 'BPrepalyBold',
+    color: '#FFFFFF',
+    fontSize: '25px'
   }
 });
 
@@ -148,14 +175,9 @@ class ConfirmationDialog extends React.Component {
       <div className={classes.root}>
         <List>
           <ListItem onClick={this.handleClickListItem}>
-          {console.log(this.props.val)}
-            <span className={classes.imgText}>{this.props.val}</span>
-            
-            
-
             <div className={classes.country} >
-                <img src={require('../static/Rectangle.png')} alt="rectangle"/>
-                <img src={require('../static/circle.png')} alt="circle"/>
+                <div className={classes.dynamicCircle}>{this.state.value}</div>
+                <div className={classes.countryPick}>+</div>
             </div>
           </ListItem>
           <ConfirmationDialogRaw

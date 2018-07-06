@@ -32,6 +32,8 @@ class Panels extends React.Component {
     }
   }
 
+
+
   
   render() {
     return (
@@ -53,8 +55,11 @@ class Panels extends React.Component {
                <p><img src={require('../static/volume-bars.svg')} alt="volume"/> Filter Alarm personal</p>
                <p>Country</p>
                <ConfirmationDialog/>
-               <p>Gender</p>
+               <p>Gender</p> <div >Female</div><div>Male</div>
+               <p>Age</p>
+               
                {this.props.alarm.filter.age}<br/>
+               
                {this.props.alarm.filter.gender}<br/>
                {this.props.alarm.repeat}<br/>
             </Panel.Body>
