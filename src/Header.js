@@ -45,8 +45,7 @@ class Header extends Component{
     
     phoneUpView = {
         position: 'absolute',
-        top: '3px',
-        left: '0px',
+        top: '1.5px',
         width: '100%'
 
     }
@@ -93,7 +92,7 @@ class Header extends Component{
     render(){
         return(
             <header style={this.headerStyle}>
-                <img src={require('./static/phoneUpView.png')} style={this.phoneUpView} alt="phone up view picture"/>
+                <img src={require('./static/Bars-Status-White.svg')} style={this.phoneUpView} alt="phone up view"/>
                 <NavLink  exact to='/' className="logo" style={this.LogoStyle} onClick={() => this.chackRendar('alarm')}>AlarmMe</NavLink>
                 <NavLink  exact to='/Setting' onClick={() => this.chackRendar('setting')}><img style={this.settingIcon} src={require('./static/settings.svg')} alt="setting icon" /></NavLink>
                 <NavLink  exact to='/' onClick={() => this.chackRendar('alarm')}><img style={this.alarmIcon} src={require('./static/alarm-clock.svg')}  alt="alarm icon"/></NavLink>

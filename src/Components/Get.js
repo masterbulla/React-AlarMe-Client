@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-//import '../index.css';
 import Panels from './AlarmCards'
 
 class Get extends Component{
@@ -12,7 +11,7 @@ class Get extends Component{
         }
         this.eachAlarm   = this.eachAlarm.bind(this);
        
-      }
+    }
 
     componentDidMount() {
         const url ="https://alarme-app.herokuapp.com/getalarm?id=1";
@@ -46,8 +45,6 @@ class Get extends Component{
         );
       }
     
-
-
     render(){
         return(
             <div>
@@ -60,13 +57,3 @@ class Get extends Component{
 }
 
 export default Get;
-
-/*
-<p>{data.time}</p>
-                <p> {data.active}</p>
-                <p> {data.morningAwakning}</p>
-                <p> {data.repeat}</p>
-                <p> {data.filter.country}</p>
-                <p> {data.filter.gender}</p>
-                <p> {data.filter.age}</p>
-                */
