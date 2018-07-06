@@ -16,7 +16,9 @@ class Panels extends React.Component {
 
     this.repeatCheck  = this.repeatCheck.bind(this);
     this.morningChack = this.morningChack.bind(this);
-    this.active = this.active.bind(this);
+    this.activeGender = this.activeGender.bind(this);
+    this.calculateSleptTime = this.calculateSleptTime.bind(this);
+    this.genderChack = this.genderChack.bind(this);
   }
 
   repeatCheck(){
@@ -36,17 +38,70 @@ class Panels extends React.Component {
     }
   }
 
-  active(data, e){
-    console.log(e, data);
-    
+  //gender chack 
+  activeGender(e){
+    if(e.target.className == 'noActive')
+        e.target.className = 'active'
+    else
+      e.target.className = 'noActive'
+  }
+  genderChack(gender, type ){
+      if(gender == type)
+        return 'active'
+      else  
+        return 'noActive'
 
   }
 
-  
- 
+   //day chack  -צריך לסדר את הימים בשרת כדי שיהיה נוח לבצע עדכון וחיפוש 
+   activerepeat(e){
+    if(e.target.className == 'noActiveDay')
+        e.target.className = 'activeDay'
+    else
+      e.target.className = 'noActiveDay'
+  }
+  repeatChack(repeat, type ){
+    
+    for(var i=0;i<repeat.length;i++){
+      console.log(repeat[0]);
+      if(repeat == type)
+        return 'activeDay'
+      else  
+        return 'noActiveDay'
+    }
+  }
+
+  //calculate sleep time
+  calculateSleptTime(){
+    //takes the date of the alarm and removes quotes or spaces
+    var s  = this.props.alarm.time;
+    s = s.replace(/\"/g, '');
+    s = s.replace(/\s/g, '');
+
+    //split the time to hours and minutes
+    var time = s.split(/\:|\-/g);
+    var dat = new Date();
+    dat.setHours(time[0]);
+    dat.setMinutes(time[1]);
+
+    //calculate the sleep time from now to the set alarm time
+    var d = new Date();
+    if(d.getHours() > dat.getHours()){
+        d.setHours(d.getHours() - dat.getHours());    
+    }else{
+        d.setHours(dat.getHours() - d.getHours());  
+    }
+    if(d.getMinutes() > dat.getMinutes()){
+        d.setMinutes(d.getMinutes() - dat.getMinutes());
+    }else{
+        d.setMinutes(dat.getMinutes() - d.getMinutes());
+    }
+    var result = d.getHours() +':'+ d.getMinutes();
+    return <span>{result}</span>
+}
 
   render() {
-    const percentage = 10;
+    const percentage = this.calculateSleptTime();
     return (
       <div>
         <Panel  id="collapsible-panel-example-2"  defaultExpanded={this.state.open}>
@@ -68,13 +123,20 @@ class Panels extends React.Component {
                <p><img src={require('../static/volume-bars.svg')} alt="volume"/> Filter Alarm personal</p>
                <p>Country</p>
                <ConfirmationDialog/>
-               <p>Gender</p> <div className="noActive" val="false" onClick={(e) => this.active(this)}>Female</div><div className="noActive" onClick={(e) => this.active(this, e)}>Male</div>
+
+               <p>Gender</p> <div className={this.genderChack(this.props.alarm.filter.gender, "F")}   onClick={(e) => this.activeGender(e,this)}>Female</div><div className={this.genderChack(this.props.alarm.filter.gender, "M")}    onClick={(e) => this.activeGender(e, this)}>Male</div>
+               
                <p>Age</p>
-               
-               {this.props.alarm.filter.age}<br/>
-               
-               {this.props.alarm.filter.gender}<br/>
-               {this.props.alarm.repeat}<br/>
+               <p><img src={require('../static/repeat.svg')} alt="volume"/>Repeat</p>
+               {console.log()}
+               <div className={this.repeatChack(this.props.alarm.repeat, "M")}   onClick={(e) => this.activerepeat(e,this)}>M</div>
+               <div className={this.repeatChack(this.props.alarm.repeat, "T")}   onClick={(e) => this.activerepeat(e,this)}>T</div>
+               <div className={this.repeatChack(this.props.alarm.repeat, "W")}   onClick={(e) => this.activerepeat(e,this)}>W</div>
+               <div className={this.repeatChack(this.props.alarm.repeat, "T")}   onClick={(e) => this.activerepeat(e,this)}>T</div>
+               <div className={this.repeatChack(this.props.alarm.repeat, "F")}   onClick={(e) => this.activerepeat(e,this)}>F</div>
+               <div className={this.repeatChack(this.props.alarm.repeat, "S")}   onClick={(e) => this.activerepeat(e,this)}>S</div>
+               <div className={this.repeatChack(this.props.alarm.repeat, "S")}   onClick={(e) => this.activerepeat(e,this)}>S</div>
+                              
             </Panel.Body>
           </Panel.Collapse>
         </Panel>

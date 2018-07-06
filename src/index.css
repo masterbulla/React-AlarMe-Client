@@ -247,11 +247,56 @@ a:focus, a:hover {
   letter-spacing: .116px;
   color: #1b9e70; 
   font-family: BPrepalyBold;
+  margin-left: 8px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  display: inline-block;
 }
 
 /*age text*/
 .panel-body p:nth-child(8){
   margin-top: 10px;
+}
+
+/*repeat text*/
+.panel-body p:nth-child(9){
+  margin-top: 30px; 
+  display: inline-block;
+  color: #5E636F; 
+}
+.noActiveDay{
+  background-color: #e5e7ee;
+  border-radius: 50%;
+  width: 23px;
+  height: 23px; 
+  margin-left: 8px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  font-family: BPrepalyBold;
+  display: inline-block;
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: .116px;
+  color: #E5E7EE;
+}
+
+.activeDay{
+  background-color: #00FF6F;
+  border-radius: 50%;
+  width: 23px;
+  height: 23px; 
+  margin-left: 8px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  font-family: BPrepalyBold;
+  display: inline-block;
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: .116px;
+  color: #1b9e70; 
 }
 
 
