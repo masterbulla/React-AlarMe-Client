@@ -31,7 +31,10 @@ class Send extends Component{
                         active: data.active,
                         morningAwakning: data.morningAwakning,
                         repeat: [data.repeat],
-                        filter: {country: data.filter.country, gender: data.filter.gender, age: data.filter.age }
+                        filter: {country: data.filter.country, gender: data.filter.gender, age: data.filter.age },
+                        creatorName: data.creatorName,
+                        creatorAge: data.creatorAge,
+                        sleepTime: data.sleepTime
                     }]
                 }))
                 return 0;
