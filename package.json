@@ -10,6 +10,8 @@
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.4.0",
     "react-google-login": "^3.2.1",
+    "react-google-login-component": "^0.9.3",
+    "react-google-oauth": "^1.0.0",
     "react-responsive": "^4.1.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4"

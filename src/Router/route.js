@@ -5,12 +5,14 @@ import Setting from '../Components/Setting';
 import Login from '../Login';
 import Send from '../Components/Send';
 import Get from '../Components/Get';
+import GmailLogin from '../Components/GmailLogin'
+
 
 const ReactRouter =()=>{
     return (
         <React.Fragment>
             <Header />
-            <Route exact path="/"  component={Login}/>
+            <Route exact path="/"  component={GmailLogin}/>
             <Route  exact path="/Setting" component={Setting} />
             <Route  exact path="/get" component={Get} />
             <Route  exact path="/send" component={Send} />
