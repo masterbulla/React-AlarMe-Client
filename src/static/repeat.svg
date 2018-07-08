@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16.664 13.664">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #5e636f;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-miterlimit: 10;
+        stroke-width: 1.664px;
+      }
+    </style>
+  </defs>
+  <g id="Group_3" data-name="Group 3" transform="translate(0.832 0.832)">
+    <path id="Stroke_12" data-name="Stroke 12" class="cls-1" d="M5,0,2.222,2,0,0" transform="translate(0 6)"/>
+    <path id="Stroke_10" data-name="Stroke 10" class="cls-1" d="M3.089,11.248A6,6,0,1,0,0,6v.6" transform="translate(3)"/>
+  </g>
+</svg>

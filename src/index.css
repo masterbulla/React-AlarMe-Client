@@ -89,15 +89,21 @@ a:focus, a:hover {
   min-height: 85px;
   margin: auto;
   margin-top: 10px;
-}
+  border-radius: 10px;
+  background-color: #ffffff;
 
+
+}
+/*panels header*/
 .panel-default>.panel-heading{
   background-image: linear-gradient(to bottom,#ffffff 0,#ffffff 100%);
   border: white;
   position: relative;
+  border-radius: 10px;
+
 }
 
-
+/*time*/
 .panel-heading .panel-title span:nth-of-type(1){
   color: #0065FF;
   font-family: BPrepalyBold;
@@ -105,76 +111,114 @@ a:focus, a:hover {
   position: absolute;
   top: 10px;
   left: 80px;
-}
+  letter-spacing: .32px;
 
+}
+/*repeat icon text*/
 .panel-heading .panel-title span:nth-of-type(2){
   color: #9FA5B4;
   font-family: BPrepalyBold;
-  font-size: 9px;
+  font-size: 10px;
+  font-weight: 700;
   position: absolute;
   top: 50px;
   left: 120px;
+  letter-spacing: .429px;
 }
-
+/*global icon text*/
 .panel-heading .panel-title span:nth-of-type(3){
   color: #9FA5B4;
   font-family: BPrepalyBold;
   font-size: 9px;
   position: absolute;
-  top: 50px;
+  top: 51px;
   left: 85px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .429px; 
 }
-
+/*repeat icon image*/
 .panel-heading .panel-title span:nth-of-type(2) img{
   width: 10px;
   height: 9px;
   margin-right: 3px;
 }
-
+/*global icon image*/
 .panel-heading .panel-title span:nth-of-type(3) img{
   width: 10px;
   height: 9px;
-  margin-right: 3px;
 }
 
+/*circle progress bat*/
+.circularProgressbar{
+  width: 54.41px;
+  margin-top: 3px;
+}
+.CircularProgressbar .CircularProgressbar-text {
+  dominant-baseline: middle;
+  text-anchor: middle;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: .1408px;
+  fill: #9fa5b4; 
+}
+.CircularProgressbar .CircularProgressbar-path {
+  stroke: #626A7C;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.5s ease 0s;
+}
+
+.CircularProgressbar .CircularProgressbar-trail {
+  stroke: #CBD1E2;
+}
+
+/*panel body*/
 .panel-body{
   margin-top: 35px;
 }
 
-.panel-body p img{
-  width: 14px;
-  height: 16px;
-  margin-right: 7px;
-}
-
+/*morning awakening text*/
 .panel-body p:nth-child(1){
   color: #5E636F;
   font-family: BPrepalyBold;
   margin: 0 0 0 0;
   padding: 0;
   display: inline;
-  
+  font-size: 16px;
+  font-weight: 700;
 }
 
+/*filter alarm text*/
 .panel-body p:nth-child(2){
   color: #5E636F;
   font-family: BPreplay;
-  margin-top: 5px;
+  margin-top: 3px;
+  font-size: 15px;
+
 }
 
-.panel-body p:nth-child(3), .panel-body p:nth-child(5){
-  font-size: 10px;
+/*filter alarm + morning awakening  icon*/
+.panel-body p img:nth-of-type(1){
+  width: 14px;
+  height: 16px;
+  margin-right: 5px;
+}
+
+/*country + gender + age text*/
+.panel-body p:nth-child(3), .panel-body p:nth-child(5), .panel-body p:nth-child(8){
+  font-size: 12px;
   font-family: BPreplay;
   color:#9FA5B4;
 }
 
-.panel-body p:nth-child(5){
+/*gender text*/
+.panel-body p:nth-child(5) {
   margin-top: 30px; 
   display: inline-block;
-
 }
 
-.panel-body div:nth-child(6), .panel-body div:nth-child(7){
+/*male + female text*/
+.panel-body .noActive{
   background-color: #e5e7ee;
   border-radius: 11px;
   width: 63px;
@@ -191,7 +235,8 @@ a:focus, a:hover {
   color: #cbd1e2;
 }
 
-.panel-body div:nth-child(6):active, .panel-body div:nth-child(7):active{
+/*male + female active button*/
+.panel-body .active{
   background-image: linear-gradient(180deg, #00ff6f 0, #24e07d 1);
   border-radius: 11px;
   box-shadow: 0 3px 5px rgba(0, 0, 0, .4);
@@ -202,13 +247,56 @@ a:focus, a:hover {
   letter-spacing: .116px;
   color: #1b9e70; 
   font-family: BPrepalyBold;
+  margin-left: 8px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  display: inline-block;
 }
 
+/*age text*/
 .panel-body p:nth-child(8){
-  color: #9FA5B4;
-  font-size: 10px;
-  font-family: BPreplay;
   margin-top: 10px;
+}
+
+/*repeat text*/
+.panel-body p:nth-child(9){
+  margin-top: 30px; 
+  display: inline-block;
+  color: #5E636F; 
+}
+.noActiveDay{
+  background-color: #e5e7ee;
+  border-radius: 50%;
+  width: 23px;
+  height: 23px; 
+  margin-left: 8px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  font-family: BPrepalyBold;
+  display: inline-block;
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: .116px;
+  color: #E5E7EE;
+}
+
+.activeDay{
+  background-color: #00FF6F;
+  border-radius: 50%;
+  width: 23px;
+  height: 23px; 
+  margin-left: 8px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  font-family: BPrepalyBold;
+  display: inline-block;
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: .116px;
+  color: #1b9e70; 
 }
 
 

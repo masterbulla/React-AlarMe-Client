@@ -12,9 +12,10 @@ import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const options = [
+  'GLOABAL',
   'Israel',
   'Russia',
-  'United States',
+  'US',
   'French',
   'India',
   'Argentina',
@@ -134,7 +135,10 @@ const styles = theme => ({
     marginTop: '5px',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    fontSize: '16.25px',
+    fontWeight: '700',
+    letterSpacing: '.92625px'
   },
   countryPick: {
     float: 'left',
@@ -149,7 +153,9 @@ const styles = theme => ({
     alignItems: 'center',
     fontFamily: 'BPrepalyBold',
     color: '#FFFFFF',
-    fontSize: '25px'
+    fontSize: '24.25px',
+    fontWeight: '700',
+    letterSpacing: '.9215px'
   }
 });
 
@@ -158,7 +164,7 @@ class ConfirmationDialog extends React.Component {
 
   state = {
     open: false,
-    value: 'Global',
+    value: 'GLOBAL',
   };
 
   handleClickListItem = () => {
