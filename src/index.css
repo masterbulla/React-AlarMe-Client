@@ -104,49 +104,42 @@ a:focus, a:hover {
 }
 
 /*time*/
-.panel-heading .panel-title span:nth-of-type(1){
+.panel-heading .panel-title span:nth-last-child(4){
   color: #0065FF;
   font-family: BPrepalyBold;
   font-size: 35px;
   position: absolute;
-  top: 10px;
+  top: 5px;
   left: 80px;
   letter-spacing: .32px;
 
 }
-/*repeat icon text*/
-.panel-heading .panel-title span:nth-of-type(2){
-  color: #9FA5B4;
+
+.panel-heading .panel-title .iconDiv{
+  position: relative;
+  top: -50px;
+  left: 65px;
   font-family: BPrepalyBold;
   font-size: 10px;
   font-weight: 700;
-  position: absolute;
-  top: 50px;
-  left: 120px;
-  letter-spacing: .429px;
-}
-/*global icon text*/
-.panel-heading .panel-title span:nth-of-type(3){
-  color: #9FA5B4;
-  font-family: BPrepalyBold;
-  font-size: 9px;
-  position: absolute;
-  top: 51px;
-  left: 85px;
-  font-size: 9px;
-  font-weight: 700;
   letter-spacing: .429px; 
+  color: #9FA5B4;
 }
+/*repeat + global icon text*/
+.panel-heading .panel-title .iconDiv span:nth-of-type(2){
+  margin-left: 8px;
+}
+
 /*repeat icon image*/
+.panel-heading .panel-title span:nth-of-type(1) img{
+  width: 10px;
+  height: 9px;
+}
+/*global icon image*/
 .panel-heading .panel-title span:nth-of-type(2) img{
   width: 10px;
   height: 9px;
   margin-right: 3px;
-}
-/*global icon image*/
-.panel-heading .panel-title span:nth-of-type(3) img{
-  width: 10px;
-  height: 9px;
 }
 
 /*circle progress bat*/
