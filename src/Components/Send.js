@@ -16,20 +16,25 @@ class Send extends Component{
 
     componentDidMount() {
 
+
         var profile = localStorage.getItem('userProfile');
         console.log(profile)
         const url = "http://localhost:3030/sendalarm?id=" + profile;;
+
         fetch(url).then((res) => {
-          return res.json();
+            if(res.statusText === 'Internal Server Error')
+                return 'error';
+            return res.json();
         }).then((data) => {
-            
+            if(data === 'error'){
+                console.log("error to get send alarm");
+                return 0 ;
+            }
             data.sendAlarm.map((data) => {
                 this.setState(prevState => ({
                     alarm: [
                     ...prevState.alarm,
                     {
-                        
-                    
                         time: data.time,
                         active: data.active,
                         morningAwakning: data.morningAwakning,

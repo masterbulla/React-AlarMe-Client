@@ -11,6 +11,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
+
 const options = [
   'GLOABAL',
   'Israel',
@@ -34,7 +35,7 @@ class ConfirmationDialogRaw extends React.Component {
 
   constructor(props) {
     super(props);
-
+    
     this.state.value = this.props.value;
   }
 
@@ -164,7 +165,7 @@ class ConfirmationDialog extends React.Component {
 
   state = {
     open: false,
-    value: 'GLOBAL',
+    value: this.props.route,
   };
 
   handleClickListItem = () => {
@@ -172,7 +173,13 @@ class ConfirmationDialog extends React.Component {
   };
 
   handleClose = value => {
+    /*axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${data.props.alarm._id}&keyupdate=filter.country&valueupdate=${value}`)
+    .then(res => {
+      console.log(res);
+    })*/
     this.setState({ value, open: false });
+    this.props.onChange(value);
+
   };
 
   render() {
