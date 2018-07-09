@@ -15,18 +15,21 @@ class Send extends Component{
       }
 
     componentDidMount() {
-        const url ="https://alarme-app.herokuapp.com/sendalarm?id=1";
+        const url ="https://alarme-app.herokuapp.com/sendalarm?id=3";
         fetch(url).then((res) => {
-          return res.json();
+            if(res.statusText === 'Internal Server Error')
+                return 'error';
+            return res.json();
         }).then((data) => {
-            
+            if(data === 'error'){
+                console.log("error to get send alarm");
+                return 0 ;
+            }
             data.sendAlarm.map((data) => {
                 this.setState(prevState => ({
                     alarm: [
                     ...prevState.alarm,
                     {
-                        
-                    
                         time: data.time,
                         active: data.active,
                         morningAwakning: data.morningAwakning,

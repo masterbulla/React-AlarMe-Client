@@ -16,9 +16,16 @@ class Get extends Component{
     componentDidMount() {
         const url ="https://alarme-app.herokuapp.com/getalarm?id=1";
         fetch(url).then((res) => {
-          return res.json();
-        }).then((data) => {
+            if(res.statusText === 'Internal Server Error'){
+                return 'error';
+            }else
+                return res.json();    
             
+        }).then((data) => {
+            if(data === 'error'){
+                console.log("error to get alarm");
+                return 0 ;
+            }
             data.getAlarm.map((data) => {
                 this.setState(prevState => ({
                     alarm: [

@@ -150,7 +150,7 @@ activerepeat(e, type){
   }
 }
 repeatChack(repeat, type ){
-  if(repeat[type] == true)
+  if(repeat[type] === true)
     return 'activeDay'
   else{
     return 'noActiveDay'
