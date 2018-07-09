@@ -19,7 +19,7 @@ class Send extends Component{
 
         var profile = localStorage.getItem('userProfile');
         console.log(profile)
-        const url = "http://localhost:3030/sendalarm?id=" + profile;;
+        const url = "http://localhost:3030/sendalarm?id=" + profile;
 
         fetch(url).then((res) => {
             if(res.statusText === 'Internal Server Error')

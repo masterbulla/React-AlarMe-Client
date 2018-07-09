@@ -110,26 +110,26 @@ class Panels extends React.Component {
 
 
 //time handle
-handleClose = () => {
-  this.setState({ open: false, time: this.props.alarm.time });
-};
-handleAccapt = (data) => {
-  axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${data.props.alarm._id}&keyupdate=time&valueupdate=${this.state.time}`)
-  .then(res => {
-    console.log(res);
-  })
-  this.setState({open: false });
-};
+// handleClose = () => {
+//   this.setState({ open: false, time: this.props.alarm.time });
+// };
+// handleAccapt = (data) => {
+//   axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${data.props.alarm._id}&keyupdate=time&valueupdate=${this.state.time}`)
+//   .then(res => {
+//     console.log(res);
+//   })
+//   this.setState({open: false });
+// };
 
 
 //country update
-countryupdate = (Country) => {
-  this.setState({country: Country})
-  axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${this.props.alarm._id}&keyupdate=filter.country&valueupdate=${Country}`)
-  .then(res => {
-    console.log(res);
-  })
-}
+// countryupdate = (Country) => {
+//   this.setState({country: Country})
+//   axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${this.props.alarm._id}&keyupdate=filter.country&valueupdate=${Country}`)
+//   .then(res => {
+//     console.log(res);
+//   })
+// }
 
 //day chack  
 activerepeat(e, type){
@@ -159,12 +159,9 @@ repeatChack(repeat, type ){
 
 
   render() {
-<<<<<<< HEAD
-    const percentage = this.calculateSleptTime();
+    //const percentage = this.calculateSleptTime();
     
-=======
     const percentage = 10;
->>>>>>> 13ab1686e5f3328569bb45490650fcaa0489f8cc
     return (
       <div>
         <Panel id="collapsible-panel-example-2"  defaultExpanded={this.state.open}>

@@ -71,7 +71,7 @@ class SendPanels extends React.Component {
                 <img className="profile-picture" src={require('../static/kim-kardashian.jpg')} alt="refresh" />
                 <span className="name-of">kim Kardashian</span>
                 <img className="wake-up" src={require('../static/alarm-clock.svg')} alt="refresh" /><span className="time-style" onClick={ ()=> this.setState({ open: !this.state.open })}>{this.props.alarm.time}</span><br/>
-                <span className="repeat-style age-gender" onClick={ ()=> this.setState({ open: !this.state.open })}><img className="gender-icon" src={require('../static/woman.svg')} alt="refresh" />{this.props.alarm.filter.age}, {this.props.alarm.filter.gender}</span>
+                <span className="age-gender" onClick={ ()=> this.setState({ open: !this.state.open })}><img className="gender-icon" src={require('../static/woman.svg')} alt="refresh" />{this.props.alarm.filter.age}, {this.props.alarm.filter.gender}</span>
                 <span className="country-style" onClick={ ()=> this.setState({ open: !this.state.open })}><img className="global-img" src={require('../static/global.svg')} alt="global"/> {this.props.alarm.filter.country}</span>
                 <span className="can-be">Can be weaken in 3 minutes</span>
                 

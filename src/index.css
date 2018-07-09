@@ -309,17 +309,20 @@ hr{
 
 .time-style{
     color: #D8D8D8 !important;
-    /* font-family: BPrepalyBold; */
+    font-family: BPrepalyBold;
     font-size: 14px !important;
     position: relative !important;
     top: 16px !important;
-    left: 92px !important;
+    left: -90px !important;
 }
 
 .name-of{
     color: #626A7C !important;
     font-family: inherit !important;
     font-size: 25px !important;
+    margin-left: 20px !important;
+    position: relative !important;
+    bottom: 11px !important;
 }
 
 .global-img{
@@ -328,7 +331,7 @@ hr{
 
 .country-style{
     position: relative !important;
-    left: 64px !important;
+    left: 14px !important;
     bottom: 26px !important;
     color: #D8D8D8 !important;
     font-size: 14px !important;
@@ -343,10 +346,10 @@ hr{
 }
 
 .wake-up{
-    width: 10px;
-    position: relative;
-    left: 89px;
-    top: 16px;
+    width: 10px !important;
+    position: relative !important;
+    left: -94px !important;
+    top: 16px !important;
 }
 
 .gender-icon{
@@ -358,15 +361,19 @@ hr{
 
 .age-gender{
   color:#D8D8D8 !important;
+  position: relative !important;
+  bottom: 26px !important;
+  left: 216px !important;
+  font-size: 12px !important;
 }
 
 .can-be{
-    font-family: Assistant;
-    color: dodgerblue;
-    position: relative;
-    bottom: 7px;
-    left: 10px;
-    font-size: 12px;
+    font-family: Assistant !important;
+    color: dodgerblue !important;
+    position: relative !important;
+    bottom: 7px !important;
+    left: -41px !important;
+    font-size: 12px !important;
 }
 
 .opacity0{
