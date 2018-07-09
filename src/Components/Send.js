@@ -15,7 +15,10 @@ class Send extends Component{
       }
 
     componentDidMount() {
-        const url ="https://alarme-app.herokuapp.com/sendalarm?id=1";
+
+        var profile = localStorage.getItem('userProfile');
+        console.log(profile)
+        const url = "http://localhost:3030/sendalarm?id=" + profile;;
         fetch(url).then((res) => {
           return res.json();
         }).then((data) => {

@@ -102,6 +102,7 @@ class Panels extends React.Component {
 
   render() {
     const percentage = this.calculateSleptTime();
+    
     return (
       <div>
         <Panel  id="collapsible-panel-example-2"  defaultExpanded={this.state.open}>
