@@ -78,33 +78,7 @@ class Panels extends React.Component {
 
   }
 
-   //day chack  -צריך לסדר את הימים בשרת כדי שיהיה נוח לבצע עדכון וחיפוש 
-   activerepeat(e){
-    if(e.target.className === 'noActiveDay'){
-       e.target.className = 'activeDay'
-       //console.log(e.target);
-     }
-    else{
-      e.target.className = 'noActiveDay'
-      //console.log(e.target);
-    }
-  }
-  repeatChack(repeat, type ){
-    
-    for(var i=0;i<repeat.length;i++){
-      if(repeat === type){
-        return 'activeDay'
-        //console.log(repeat.target);
-
-      }
-      else  {
-        return 'noActiveDay'
-        //console.log(repeat.target);
-
-      }
-    }
-  }
-
+  
   //calculate sleep time
  /* calculateSleptTime(){
     //takes the date of the alarm and removes quotes or spaces
@@ -157,6 +131,31 @@ countryupdate = (Country) => {
   })
 }
 
+//day chack  
+activerepeat(e, type){
+  if(e.target.className === 'noActiveDay'){
+        e.target.className = 'activeDay'
+        axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${this.props.alarm._id}&keyupdate=repeat.${type}&valueupdate=true`)
+        .then(res => {
+          console.log(res);
+        })
+   }
+  else{
+        e.target.className = 'noActiveDay';
+        axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${this.props.alarm._id}&keyupdate=repeat.${type}&valueupdate=false`)
+        .then(res => {
+          console.log(res);
+        })
+   
+  }
+}
+repeatChack(repeat, type ){
+  if(repeat[type] == true)
+    return 'activeDay'
+  else{
+    return 'noActiveDay'
+  }
+}
 
 
   render() {
@@ -209,13 +208,13 @@ countryupdate = (Country) => {
                           <p>Age</p>
                           <p><img src={require('../static/repeat.svg')} alt="volume"/>Repeat</p>
                           {console.log()}
-                          <div className={this.repeatChack(this.props.alarm.repeat, "M")}   onClick={(e) => this.activerepeat(e,this)}>M</div>
-                          <div className={this.repeatChack(this.props.alarm.repeat, "T")}   onClick={(e) => this.activerepeat(e,this)}>T</div>
-                          <div className={this.repeatChack(this.props.alarm.repeat, "W")}   onClick={(e) => this.activerepeat(e,this)}>W</div>
-                          <div className={this.repeatChack(this.props.alarm.repeat, "T")}   onClick={(e) => this.activerepeat(e,this)}>T</div>
-                          <div className={this.repeatChack(this.props.alarm.repeat, "F")}   onClick={(e) => this.activerepeat(e,this)}>F</div>
-                          <div className={this.repeatChack(this.props.alarm.repeat, "S")}   onClick={(e) => this.activerepeat(e,this)}>S</div>
-                          <div className={this.repeatChack(this.props.alarm.repeat, "S")}   onClick={(e) => this.activerepeat(e,this)}>S</div>            
+                          <div className={this.repeatChack(this.props.alarm.repeat[0], 'monday')}   onClick={(e) => this.activerepeat(e, 'monday')}>M</div>
+                          <div className={this.repeatChack(this.props.alarm.repeat[0], 'tuesday')}   onClick={(e) => this.activerepeat(e, 'tuesday')}>T</div>
+                          <div className={this.repeatChack(this.props.alarm.repeat[0], 'wednesday')}   onClick={(e) => this.activerepeat(e,'wednesday')}>W</div>
+                          <div className={this.repeatChack(this.props.alarm.repeat[0], 'thursday')}   onClick={(e) => this.activerepeat(e, 'thursday')}>T</div>
+                          <div className={this.repeatChack(this.props.alarm.repeat[0], 'friday')}   onClick={(e) => this.activerepeat(e, 'friday')}>F</div>
+                          <div className={this.repeatChack(this.props.alarm.repeat[0], 'saturday')}   onClick={(e) => this.activerepeat(e, 'saturday')}>S</div>
+                          <div className={this.repeatChack(this.props.alarm.repeat[0], 'sunday')}   onClick={(e) => this.activerepeat(e, 'sunday')}>S</div>            
                     </Panel.Body>
               </Panel.Collapse>
         </Panel>
