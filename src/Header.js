@@ -89,11 +89,6 @@ class Header extends Component{
           );
     }
 
-    openPanel(){
-        return(
-            <div>beni</div>
-        );
-    }
 
     render(){
         return(
@@ -101,7 +96,7 @@ class Header extends Component{
                 <img src={require('./static/Bars-Status-White.svg')} style={this.phoneUpView} alt="phone up view"/>
                 <NavLink  exact to='/' className="logo" style={this.LogoStyle} onClick={() => this.chackRendar('alarm')}>AlarmMe</NavLink>
                 <NavLink  exact to='/Setting' onClick={() => this.chackRendar('setting')}><img style={this.settingIcon} src={require('./static/settings.svg')} alt="setting icon" /></NavLink>
-                <NavLink  exact to='/get' onClick={() => this.chackRendar('alarm')}><img style={this.alarmIcon} onClick={() => this.openPanel()} src={require('./static/alarm-clock.svg')}  alt="alarm icon"/></NavLink>
+                <NavLink   exact to='/get' onClick={() => this.chackRendar('alarm')}  ><img style={this.alarmIcon} src={require('./static/alarm-clock.svg')}  alt="alarm icon"/></NavLink>
                 {this.state.editing ? this.renderSetting() : this.renderAlarm()}
             </header>
         );

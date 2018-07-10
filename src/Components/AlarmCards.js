@@ -12,7 +12,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Switch from '@material-ui/core/Switch';
-import Slider, { Range } from 'rc-slider';
+import { Range } from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
 
@@ -138,26 +138,26 @@ class Panels extends React.Component {
 
 
 //time handle
-// handleClose = () => {
-//   this.setState({ open: false, time: this.props.alarm.time });
-// };
-// handleAccapt = (data) => {
-//   axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${data.props.alarm._id}&keyupdate=time&valueupdate=${this.state.time}`)
-//   .then(res => {
-//     console.log(res);
-//   })
-//   this.setState({open: false });
-// };
+ handleClose = () => {
+   this.setState({ open: false, time: this.props.alarm.time });
+ };
+ handleAccapt = (data) => {
+   axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${data.props.alarm._id}&keyupdate=time&valueupdate=${this.state.time}`)
+   .then(res => {
+     console.log(res);
+   })
+   this.setState({open: false });
+};
 
 
 //country update
-// countryupdate = (Country) => {
-//   this.setState({country: Country})
-//   axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${this.props.alarm._id}&keyupdate=filter.country&valueupdate=${Country}`)
-//   .then(res => {
-//     console.log(res);
-//   })
-// }
+ countryupdate = (Country) => {
+   this.setState({country: Country})
+   axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${this.props.alarm._id}&keyupdate=filter.country&valueupdate=${Country}`)
+   .then(res => {
+     console.log(res);
+   })
+ }
 
 //day chack  
 activerepeat(e, type){
@@ -194,6 +194,8 @@ onSliderChange = (value) => {
       console.log(res);
     })
 }
+
+
 
 
   render() {
@@ -268,58 +270,3 @@ onSliderChange = (value) => {
 }
 
 export default Panels;
-
-
-/*
-onClick={ ()=> this.setState({ open: !this.state.open })}
-
-<TextField
-                      id="time"
-                      type="time"
-                      className="textField"
-                      defaultValue={this.props.alarm.time}
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                      inputProps={{
-                        step: 300, // 5 min
-                      }}
-                    />
-
-
-
-
-
-
-                    <Dialog
-                  open={this.state.open}
-                  onClose={this.handleClose}
-                  aria-labelledby="form-dialog-title"
-                >
-                  <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
-                  <DialogContent>
-                    <DialogContentText>
-                      To subscribe to this website, please enter your email address here. We will send
-                      updates occasionally.
-                    </DialogContentText>
-                    <TextField
-                      autoFocus
-                      margin="dense"
-                      id="name"
-                      label="time Address"
-                      type="time"
-                      fullWidth
-                      onChange={(event, newValue) => this.setState({time: event.target.value})}
-                    />
-                  </DialogContent>
-                  <DialogActions>
-                    <Button onClick={this.handleClose} color="primary">
-                      Cancel
-                    </Button>
-                    <Button onClick={console.log('dfdf')} color="primary">
-                      Subscribe
-                    </Button>
-                  </DialogActions>
-                </Dialog>
-
-*/

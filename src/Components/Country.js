@@ -13,7 +13,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 
 const options = [
-  'GLOABAL',
   'Israel',
   'Russia',
   'US',
