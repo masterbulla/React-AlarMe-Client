@@ -27,7 +27,7 @@ class Panels extends React.Component {
   
     this.state = {
       open: false,
-      checkedB: true,
+      checkedB: this.props.alarm.active,
       min: numbers[0],
       max: numbers[1],
       textFieldValue: '',
@@ -46,6 +46,7 @@ class Panels extends React.Component {
 
   handleChange = name => event => {
     this.setState({ [name]: event.target.checked });
+    
     if(event.target.checked === false){
         axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${this.props.alarm._id}&keyupdate=active&valueupdate=false`)
         .then(res => {
