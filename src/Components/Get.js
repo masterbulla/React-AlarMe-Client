@@ -10,11 +10,15 @@ class Get extends Component{
           ]
         }
         this.eachAlarm   = this.eachAlarm.bind(this);
+
        
     }
 
     componentDidMount() {
+      
+
         const url ="https://alarme-app.herokuapp.com/getalarm?id=1";
+        console.log("YRl: "+ url)
         fetch(url).then((res) => {
             if(res.statusText === 'Internal Server Error'){
                 return 'error';
