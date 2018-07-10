@@ -11,6 +11,10 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import Switch from '@material-ui/core/Switch';
+import Slider, { Range } from 'rc-slider';
+import 'rc-slider/assets/index.css';
+
 
 
 
@@ -18,8 +22,14 @@ class Panels extends React.Component {
   constructor(props, context) {
     super(props, context);
 
+    var string = this.props.alarm.filter.age;
+    var numbers = string.match(/\d+/g).map(Number);     //for Client side
+  
     this.state = {
       open: false,
+      checkedB: true,
+      min: numbers[0],
+      max: numbers[1],
       textFieldValue: '',
       time: this.props.alarm.time,
       country: this.props.alarm.filter.country
@@ -33,6 +43,23 @@ class Panels extends React.Component {
 
 
   }
+
+  handleChange = name => event => {
+    this.setState({ [name]: event.target.checked });
+    if(event.target.checked === false){
+        axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${this.props.alarm._id}&keyupdate=active&valueupdate=false`)
+        .then(res => {
+          console.log(res);
+        })
+    }
+    else{
+        axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${this.props.alarm._id}&keyupdate=active&valueupdate=true`)
+        .then(res => {
+          console.log(res);
+        })
+    }
+  };
+
 
 
   repeatCheck(){
@@ -157,6 +184,16 @@ repeatChack(repeat, type ){
   }
 }
 
+onSliderChange = (value) => {
+    this.setState({min: value[0], max: value[1]});
+    var temp = `${value[0]}-${value[1]}`;               //put to DB
+
+    axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${this.props.alarm._id}&keyupdate=filter.age&valueupdate=${temp}`)
+    .then(res => {
+      console.log(res);
+    })
+}
+
 
   render() {
     const percentage = 10;
@@ -164,6 +201,7 @@ repeatChack(repeat, type ){
       <div>
         <Panel id="collapsible-panel-example-2"  defaultExpanded={this.state.open}>
               <Panel.Heading>
+                <Switch checked={this.state.checkedB} onChange={this.handleChange('checkedB')} value="checkedB" color="primary" className="switch"/>
                     <Panel.Title toggle>
                           <div className="circularProgressbar">
                                 <CircularProgressbar percentage={percentage} text={`${percentage}\nHR`} strokeWidth={10}/>
@@ -171,6 +209,7 @@ repeatChack(repeat, type ){
                           <span className="timeSpan" onClick={(e)=> this.setState({open: true })}>
                                 {this.state.time}
                           </span><br/>
+                          
                           <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
                               <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
                                   <DialogContent>
@@ -205,7 +244,7 @@ repeatChack(repeat, type ){
 
                           <p>Gender</p> <div className={this.genderChack(this.props.alarm.filter.gender, "F")}   onClick={(e) => this.activeGender(e,this)}>Female</div><div className={this.genderChack(this.props.alarm.filter.gender, "M")}    onClick={(e) => this.activeGender(e, this)}>Male</div>
                           
-                          <p>Age</p>
+                          <p>Age<span>{this.state.min} - {this.state.max}</span></p>
                           <p><img src={require('../static/repeat.svg')} alt="volume"/>Repeat</p>
                           {console.log()}
                           <div className={this.repeatChack(this.props.alarm.repeat[0], 'monday')}   onClick={(e) => this.activerepeat(e, 'monday')}>M</div>
@@ -214,7 +253,8 @@ repeatChack(repeat, type ){
                           <div className={this.repeatChack(this.props.alarm.repeat[0], 'thursday')}   onClick={(e) => this.activerepeat(e, 'thursday')}>T</div>
                           <div className={this.repeatChack(this.props.alarm.repeat[0], 'friday')}   onClick={(e) => this.activerepeat(e, 'friday')}>F</div>
                           <div className={this.repeatChack(this.props.alarm.repeat[0], 'saturday')}   onClick={(e) => this.activerepeat(e, 'saturday')}>S</div>
-                          <div className={this.repeatChack(this.props.alarm.repeat[0], 'sunday')}   onClick={(e) => this.activerepeat(e, 'sunday')}>S</div>            
+                          <div className={this.repeatChack(this.props.alarm.repeat[0], 'sunday')}   onClick={(e) => this.activerepeat(e, 'sunday')}>S</div>    
+                          <Range  className="range"  defaultValue={[this.state.min, this.state.max]} min={0} max={120} onChange={this.onSliderChange}/>
                     </Panel.Body>
               </Panel.Collapse>
         </Panel>
