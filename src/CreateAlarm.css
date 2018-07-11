@@ -1,0 +1,195 @@
+@font-face {
+    font-family: BPreplay;
+    src: url('./static/Bpreplay/BPreplay.otf');
+  }
+  
+  @font-face {
+    font-family: Fresh;
+    src: url('./static/Mega\ Fresh\ -\ Demo.ttf');
+  }
+  
+  @font-face {
+    font-family: BPrepalyBold;
+    src: url('./static/Bpreplay/BPreplayBold.otf');
+  }
+
+
+
+/*----------------------------------------Create Alarm Component---------------------------------*/
+/*save & remov text*/
+.panelAlarm{
+    width: 349px;
+    min-height: 85px;
+    height: 420px;
+    margin: auto;
+    margin-top: 10px;
+    border-radius: 10px;
+    background-color: #ffffff;
+  }
+
+
+.removeAlarm, .saveAlarm{
+    color:#0065FF;
+    font-family: BPreplay;
+    font-size: 15px;
+  }
+  .removeAlarm{
+    position: absolute;
+    clear: both;
+
+  }
+  .saveAlarm{
+    float: right;
+    clear: both;
+  }
+  
+  /*time picker*/
+  .createTimeAlarm{
+    display: block;
+    font-size: 50px;
+    margin: 0 auto;
+    text-align: center;
+    margin-left: 20px;
+    font-family: BPrepalyBold;
+    color: #0065FF;
+
+  }
+  
+  /*Morning awk + filter alarm*/
+  .Morning{
+    border-bottom: 1px solid #E5E7EE;
+    width: 98%;
+    padding-bottom: 15px;
+  }
+  .MorningAlarm, .filterAlarm{
+    color: #5E636F;
+    font-family: BPreplay;
+    display: inline-block;    
+  }
+  .MorningAlarm img, .filterAlarm img{
+    width: 14px;
+    height: 16px;
+    margin-right: 5px;
+  }
+  .switchAlarm{
+      float: right;
+      margin-top: -13px;
+  }
+
+  .filterAlarm{
+     margin-top: 8px;
+  }
+
+
+  /*country*/
+  .countryAlarm{
+    font-size: 12px;
+    font-family: BPreplay;
+     color:#9FA5B4;
+  }
+
+  /*gender text*/
+ .pickGender{
+    margin-top: 30px; 
+    display: inline-block;
+    font-size: 12px;
+    font-family: BPreplay;
+     color:#9FA5B4;
+  }
+  
+  /*male + female text*/
+   .noActiveAlarm{
+    background-color: #e5e7ee;
+    border-radius: 11px;
+    width: 63px;
+    height: 18px; 
+    margin-left: 8px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    font-family: BPrepalyBold;
+    display: inline-block;
+    font-size: 14.5px;
+    font-weight: 700;
+    letter-spacing: .116px;
+    color: #cbd1e2;
+  }
+  
+  /*male + female active button*/
+ .activeAlarm{
+    background-image: linear-gradient(180deg, #00ff6f 0, #24e07d 1);
+    border-radius: 11px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, .4);
+    width: 63px;
+    height: 18px;
+    font-size: 14.5px;
+    font-weight: 700;
+    letter-spacing: .116px;
+    color: #1b9e70; 
+    font-family: BPrepalyBold;
+    margin-left: 8px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    display: inline-block;
+  }
+
+  /*age range*/
+.ageAlarm{
+    font-size: 12px;
+    font-family: BPreplay;
+    color:#9FA5B4;
+    margin-top: 10px;
+}
+.ageAlarm span{
+    float: right;
+    font-size: 10px;
+}
+
+/*repeat*/
+.repeatAlarm{
+    margin-top: 20px; 
+    display: inline-block;
+    color: #5E636F;
+    font-family: BPreplay;
+  }
+
+  .repeatAlarm img{
+    width: 15px;
+    height: 25px;
+    margin-right: 5px;
+  }
+  .noActiveDayAlarm{
+    background-color: #e5e7ee;
+    border-radius: 50%;
+    width: 23px;
+    height: 23px; 
+    margin-left: 8px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    font-family: BPrepalyBold;
+    display: inline-block;
+    font-size: 14.5px;
+    font-weight: 700;
+    letter-spacing: .116px;
+    color: #E5E7EE;
+  }
+  
+  .activeDayAlarm{
+    background-color: #00FF6F;
+    border-radius: 50%;
+    width: 23px;
+    height: 23px; 
+    margin-left: 8px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    font-family: BPrepalyBold;
+    display: inline-block;
+    font-size: 14.5px;
+    font-weight: 700;
+    letter-spacing: .116px;
+    color: #1b9e70; 
+  }
+  

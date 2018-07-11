@@ -251,7 +251,6 @@ onSliderChange = (value) => {
                           
                           <p>Age<span>{this.state.min} - {this.state.max}</span></p>
                           <p><img src={require('../static/repeat.svg')} alt="volume"/>Repeat</p>
-                          {console.log()}
                           <div className={this.repeatChack(this.props.alarm.repeat[0], 'monday')}   onClick={(e) => this.activerepeat(e, 'monday')}>M</div>
                           <div className={this.repeatChack(this.props.alarm.repeat[0], 'tuesday')}   onClick={(e) => this.activerepeat(e, 'tuesday')}>T</div>
                           <div className={this.repeatChack(this.props.alarm.repeat[0], 'wednesday')}   onClick={(e) => this.activerepeat(e,'wednesday')}>W</div>
