@@ -29,9 +29,34 @@ class CreateAlarm extends React.Component {
       country: 'Israel',
       min: 0,
       max: 120,
-
+      active: true,
+      time: "00:00",
+      age: "",
+      repeat: [{
+        monday: false,
+        tuesday: false,
+        wednesday: false,
+        thursday: false,
+        friday: false,
+        saturday: false,
+        sunday: false
+      }]
     };
   }
+
+  //time handle
+ handleClose = () => {
+  this.setState({ open: false});
+};
+handleAccapt = (data) => {
+  this.setState({time: data.state.time});
+  /*axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${data.props.alarm._id}&keyupdate=time&valueupdate=${this.state.time}`)
+  .then(res => {
+    console.log(res);
+  })*/
+  
+  this.setState({open: false });
+};
 
  //remove the component
   removeComponent(){
@@ -48,20 +73,20 @@ class CreateAlarm extends React.Component {
         .then(res => {
           console.log(res);
         })*/
-        console.log(event.target.checked);
+        this.setState({active: false})
       }
     else{
        /* axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${this.props.alarm._id}&keyupdate=active&valueupdate=true`)
         .then(res => {
           console.log(res);
         })*/
-        console.log(event.target.checked);
+        this.setState({active: true})
     }
   };
 
   //country update
  countryupdate = (Country) => {
-  console.log(Country);
+   console.log(Country);
   /*axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${this.props.alarm._id}&keyupdate=filter.country&valueupdate=${Country}`)
   .then(res => {
     console.log(res);
@@ -86,7 +111,8 @@ activeGender(e){
 onSliderChange = (value) => {
   this.setState({min: value[0], max: value[1]});
   var temp = `${value[0]}-${value[1]}`;               //put to DB
-  console.log(temp);
+  console.log(temp);    
+  this.setState({age: temp});                            
   /*axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${this.props.alarm._id}&keyupdate=filter.age&valueupdate=${temp}`)
   .then(res => {
     console.log(res);
@@ -97,7 +123,8 @@ onSliderChange = (value) => {
 activerepeat(e, type){
   console.log(type);
   if(e.target.className === 'noActiveDayAlarm'){
-        e.target.className = 'activeDayAlarm'
+        e.target.className = 'activeDayAlarm';
+        //this.setState({[type]: true});
         /*axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${this.props.alarm._id}&keyupdate=repeat.${type}&valueupdate=true`)
         .then(res => {
           console.log(res);
@@ -105,12 +132,20 @@ activerepeat(e, type){
    }
   else{
         e.target.className = 'noActiveDayAlarm';
+        //this.setState({repeat.[type]: false});
         /*axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${this.props.alarm._id}&keyupdate=repeat.${type}&valueupdate=false`)
         .then(res => {
           console.log(res);
         })*/
    
   }
+}
+
+//save alarm
+saveAlarm(){
+  console.log(this.state);
+
+
 }
 
 
@@ -121,9 +156,9 @@ activerepeat(e, type){
         <Panel className="panelAlarm" id="collapsible-panel-example-2"  defaultExpanded>
               <Panel.Heading>
                         <div onClick={()=> this.removeComponent()} className="removeAlarm">Delete</div>
-                        <div className = "saveAlarm" >Save</div>
-                          <span className="createTimeAlarm">
-                            10:00
+                        <div className = "saveAlarm" onClick={() => this.saveAlarm()}>Save</div>
+                          <span className="createTimeAlarm" onClick={(e)=> this.setState({open: true })}>
+                            {this.state.time}
                           </span><br/>
                           <hr/>
                           <div className="Morning">
@@ -147,9 +182,6 @@ activerepeat(e, type){
                           <div className="noActiveDayAlarm"    onClick={(e) => this.activerepeat(e, 'friday')}>F</div>
                           <div className="noActiveDayAlarm"    onClick={(e) => this.activerepeat(e, 'saturday')}>S</div>
                           <div className="noActiveDayAlarm"    onClick={(e) => this.activerepeat(e, 'sunday')}>S</div>  
-
-
-
 
                           <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
                               <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
