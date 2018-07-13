@@ -19,7 +19,7 @@ class Send extends Component{
 
         var profile = localStorage.getItem('userProfile');
         console.log(profile)
-        const url = "http://localhost:3030/sendalarm?id=" + profile;
+        const url = "https://alarme-app.herokuapp.com/sendalarm?id=" + profile.replace(/['"]+/g, '');
 
         fetch(url).then((res) => {
             if(res.statusText === 'Internal Server Error')

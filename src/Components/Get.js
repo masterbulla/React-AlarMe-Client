@@ -19,8 +19,9 @@ class Get extends Component{
 
     componentDidMount() {
       
+        var profile = localStorage.getItem('userProfile');
 
-        const url ="https://alarme-app.herokuapp.com/getalarm?id=1";
+        const url ="https://alarme-app.herokuapp.com/getalarm?id=" +profile.replace(/['"]+/g, '');
         console.log("YRl: "+ url)
         fetch(url).then((res) => {
             if(res.statusText === 'Internal Server Error'){

@@ -5,10 +5,54 @@ import { GoogleLogin } from 'react-google-login-component';
 class Login extends React.Component{
  
   constructor (props, context) {
-    super(props, context);
+      super(props, context);
+    this.state = {
+            profile: [
+          ]
+        }
+
     this.onSignIn = this.onSignIn.bind(this);
   }
  
+  componentWillMount(){
+    var profile = localStorage.getItem('userProfile');
+        console.log(profile)
+        const url = "https://alarme-app.herokuapp.com/profile?id=" + profile.replace(/['"]+/g, '');
+
+        fetch(url).then((res) => {
+            if(res.statusText === 'Internal Server Error')
+                return 'error';
+            return res.json();
+        }).then((data) => {
+            if(data === 'error'){
+                console.log("error to get user profile. Please try again later.");
+                return 0 ;
+            }
+            data.profile.map((data) => {
+                this.setState(prevState => ({
+                    profile: [
+                    ...prevState.profile,
+                    {
+                        stars: data.setting.stars,
+                        review: data.setting.reviews,
+                        ringtone: data.setting.nationalRington,
+                        friendAlert: data.setting.friendAlert,
+                        id: data.id,
+                        morningTip: data.setting.morningTip,
+                        fullname: data.fullName,
+                        age: data.age,
+                        picture: data.pic,
+                        country: data.country,
+                        gender: data.gender
+                    }]
+                }))
+                console.log(this.state.profile[0].picture)
+                return 0;
+            })
+        })
+  }
+
+
  onSignIn(googleUser) {
   console.log("test")
   var profile = googleUser.getBasicProfile();
@@ -19,9 +63,12 @@ class Login extends React.Component{
 }
 
 
+
   render () {
-    return (
-     <div className="g-signin2" data-onsuccess="onSignIn"></div>
+    return (  
+
+          <div className="g-signin2" data-onsuccess="onSignIn"></div>
+     
     );
   }
  

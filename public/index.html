@@ -58,7 +58,7 @@
         
         // The ID token you need to pass to your backend:
         var id_token = googleUser.getAuthResponse().id_token;
-        console.log("ID Token: " + id_token);
+        console.log("ID Token: " + profile.getId());
           fetch("http://localhost:3030/profile?id="+profile.getId()).then((res) => {
           return res.json();
         }).then((data) => {
