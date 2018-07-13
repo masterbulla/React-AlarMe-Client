@@ -1,6 +1,5 @@
-const images = {
-	  'Kim Kardashian': require('../static/kim-kardashian.jpg'),
-	  'Vladimir Putin': require('../static/putin.jpeg'),
+const flag = {
+
 	  'Israel'		: require('../static/israel.svg'),
 	  'Russia'		: require('../static/russia.svg'),
 	  'US'			: require('../static/united-states.svg'),
@@ -14,8 +13,7 @@ const images = {
 	  'Romania'		: require('../static/romania.svg'),
 	  'Paraguay'	: require('../static/paraguay.svg'),
 	  'Norway'		: require('../static/norway.svg'),
-	  'M'           : require('../static/man.svg'),
-	  'F'			: require('../static/woman.svg'),
+
 }
 
-export default images;
+export default flag;

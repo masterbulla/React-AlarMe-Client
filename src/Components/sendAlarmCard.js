@@ -3,6 +3,8 @@ import React from 'react';
 import '../index.css';
 import ConfirmationDialog from './Country';
 import images from './images';
+import genderImage from './gender';
+import flag from './flags'
 
 class SendPanels extends React.Component {
   constructor(props, context) {
@@ -28,17 +30,45 @@ class SendPanels extends React.Component {
   }
 
   getImage(id){
-    console.log(id)
-    console.log(images[id]);
     return (images[id])
   }
 
+  getGenderImage(gender){
+      return (genderImage[gender])
+  }
+
+  getFlagImage(country){
+      return (flag[country])
+  }
   morningChack(){
     if(this.props.alarm.morningAwakning === true){
       return <p><img src={require('../static/alarm-clock.svg')} alt="alarm"/>Morning Awakening</p>
     }else{
       return <p></p>
     }
+  }
+
+  weaken(alartime){
+    var now = new Date();
+    alartime= alartime.replace(/\"/g, '');
+    alartime = alartime.replace(/\s/g, '');
+    var time = alartime.split(/\:|\-/g);
+    var hr, min;
+    if(now.getHours() > time[0]){
+       hr = now.getHours() - time[0];
+    }else{
+       hr = time[0] - now.getHours();
+    }
+    if(now.getMinutes() > time[1]){
+      min = now.getMinutes() - time[1];
+    }else{
+      min = time[1] - now.getMinutes();
+    }
+    hr = hr*60;
+    hr = hr + min;
+    var result = hr;
+    result = Math.round(result);
+    return <span>{result}</span>
   }
 
   calculateSleptTime(){
@@ -79,9 +109,9 @@ class SendPanels extends React.Component {
                 <img className="profile-picture" src={this.getImage(this.props.alarm.creatorName)} alt="refresh" />
                 <span className="name-of">{this.props.alarm.creatorName}</span>
                 <img className="wake-up" src={require('../static/alarm-clock.svg')} alt="refresh" /><span className="time-style" onClick={ ()=> this.setState({ open: !this.state.open })}>{this.props.alarm.time}</span><br/>
-                <span className="age-gender" onClick={ ()=> this.setState({ open: !this.state.open })}><img className="gender-icon" src={require('../static/woman.svg')} alt="refresh" />{this.props.alarm.filter.age}, {this.props.alarm.filter.gender}</span>
+                <span className="age-gender" onClick={ ()=> this.setState({ open: !this.state.open })}><img className="gender-icon" src={this.getGenderImage(this.props.alarm.filter.gender)} alt="refresh" />{this.props.alarm.filter.age}, {this.props.alarm.filter.gender}</span>
                 <span className="country-style" onClick={ ()=> this.setState({ open: !this.state.open })}><img className="global-img" src={require('../static/global.svg')} alt="global"/> {this.props.alarm.filter.country}</span>
-                <span className="can-be">Can be weaken in 3 minutes</span>
+                <span className="can-be">Can be weaken in {this.weaken(this.props.alarm.time)} minutes</span>
                 
             </Panel.Title>
           </Panel.Heading>
@@ -106,7 +136,7 @@ class SendPanels extends React.Component {
                   <div className="width-25-percent pos-40px-bottom">
                     <div className="D8D8D8-color">Country</div>
                     <div className="margin-bottom-5px">
-                      <img className="flag-icon" src={require('../static/united-states.svg')} alt="usa" />
+                      <img className="flag-icon" src={this.getFlagImage(this.props.alarm.filter.country)} alt="usa" />
                     </div>
                     <div className="top-17px D8D8D8-color">Age</div>
                     <div className="top-17px color-626A7C">{this.props.alarm.creatorAge}</div>

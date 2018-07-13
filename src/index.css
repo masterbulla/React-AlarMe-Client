@@ -481,7 +481,28 @@ hr{
     margin-left: auto;
     margin-right: auto;
 }
-
+.button-login{
+    margin: auto;
+    display: block;
+    margin-top: 120px;
+}
+.button-logout{
+    height: 36px;
+    width: 120px;
+    color: white;
+    background-color: red;
+    display: block;
+    margin: auto;
+    font-family: Assistant;
+    margin-top: 30px;
+}
+.welcome-paragraph{
+    font-size: 30px;
+    text-align: center;
+    font-family: fantasy;
+    padding-top: 20px;
+    color: green;
+}
 
 
 

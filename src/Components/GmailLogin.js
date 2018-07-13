@@ -1,77 +1,59 @@
 import React, {Component} from 'react';
 import { GoogleLogin } from 'react-google-login-component';
+import { GoogleLogout } from 'react-google-login';
+import ReactDOM from 'react-dom';
 
 
 class Login extends React.Component{
  
+ 
   constructor (props, context) {
-      super(props, context);
-    this.state = {
-            profile: [
-          ]
-        }
-
-    this.onSignIn = this.onSignIn.bind(this);
+    super(props, context);
   }
  
-  componentWillMount(){
-    var profile = localStorage.getItem('userProfile');
-        console.log(profile)
-        const url = "https://alarme-app.herokuapp.com/profile?id=" + profile.replace(/['"]+/g, '');
+  responseGoogle (googleUser) {
+    var id_token = googleUser.getAuthResponse().id_token;
+    var googleId = googleUser.getId();
+    
+    console.log(googleId);
+    console.log({accessToken: id_token});
 
-        fetch(url).then((res) => {
-            if(res.statusText === 'Internal Server Error')
-                return 'error';
-            return res.json();
+    //anything else you want to do(save to localStorage)...
+    fetch("http://localhost:3030/profile?id="+googleUser.getId()).then((res) => {
+          return res.json();
         }).then((data) => {
-            if(data === 'error'){
-                console.log("error to get user profile. Please try again later.");
-                return 0 ;
-            }
-            data.profile.map((data) => {
-                this.setState(prevState => ({
-                    profile: [
-                    ...prevState.profile,
-                    {
-                        stars: data.setting.stars,
-                        review: data.setting.reviews,
-                        ringtone: data.setting.nationalRington,
-                        friendAlert: data.setting.friendAlert,
-                        id: data.id,
-                        morningTip: data.setting.morningTip,
-                        fullname: data.fullName,
-                        age: data.age,
-                        picture: data.pic,
-                        country: data.country,
-                        gender: data.gender
-                    }]
-                }))
-                console.log(this.state.profile[0].picture)
-                return 0;
-            })
-        })
-  }
-
-
- onSignIn(googleUser) {
-  console.log("test")
-  var profile = googleUser.getBasicProfile();
-  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-  console.log('Name: ' + profile.getName());
-  console.log('Image URL: ' + profile.getImageUrl());
-  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+              
+            localStorage.setItem('userProfile',JSON.stringify(data.profile[0].id));
+  });
 }
 
-
+  logout() {
+    const auth2 = window.gapi.auth2.getAuthInstance()
+    if (auth2 != null) {
+      auth2.signOut()
+    }
+  }
 
   render () {
-    return (  
+    return (
+      <div>
+        <p className="welcome-paragraph" >Welcome to Alarme App! Please Login with your google account</p>
+        <GoogleLogin socialId="752982261918-subri23eo060sdbjn9e3sgc10c5pfvh4.apps.googleusercontent.com"
+                     className="g-signin2 button-login"
+                     scope="profile"
+                     fetchBasicProfile={false}
+                     responseHandler={this.responseGoogle}
+                     buttonText="Login With Google"/>
+        <GoogleLogout
+                     buttonText="Logout"
+                     className="button-logout"
+                     onLogoutSuccess={this.logout}>
 
-          <div className="g-signin2" data-onsuccess="onSignIn"></div>
-     
+        </GoogleLogout>
+      </div>
     );
   }
- 
 }
+
  
 export default Login;
