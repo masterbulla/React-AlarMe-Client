@@ -55,7 +55,7 @@ class Header extends Component{
         super(props);
         
         this.state = {
-            editing: true 
+            editing: true,
         }
 
         this.renderSetting = this.renderSetting.bind(this);

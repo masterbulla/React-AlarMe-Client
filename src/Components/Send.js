@@ -16,10 +16,13 @@ class Send extends Component{
 
     componentDidMount() {
 
+        var url = null;
+        var profile = global.GmailID;
 
-        var profile = localStorage.getItem('userProfile');
-        console.log(profile)
-        const url = "https://alarme-app.herokuapp.com/sendalarm?id=" + profile.replace(/['"]+/g, '');
+        if(profile === null)
+            url ="https://alarme-app.herokuapp.com/sendalarm?id=114530631895967788443";
+        else
+            url ="https://alarme-app.herokuapp.com/sendalarm?id="+profile;
 
         fetch(url).then((res) => {
             if(res.statusText === 'Internal Server Error')

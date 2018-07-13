@@ -23,7 +23,7 @@ class Panels extends React.Component {
     super(props, context);
 
     var string = this.props.alarm.filter.age;
-    var numbers = string.match(/\d+/g).map(Number);     //for Client side
+    var numbers = string.match(/\d+/g).map(Number);     //for Client side - handle the age range from the client
   
     this.state = {
       open: false,
@@ -38,12 +38,12 @@ class Panels extends React.Component {
     this.repeatCheck  = this.repeatCheck.bind(this);
     this.morningChack = this.morningChack.bind(this);
     this.activeGender = this.activeGender.bind(this);
-    //this.calculateSleptTime = this.calculateSleptTime.bind(this);
     this.genderChack = this.genderChack.bind(this);
 
 
   }
 
+  //update activity alarm
   handleChange = name => event => {
     this.setState({ [name]: event.target.checked });
     
@@ -61,8 +61,7 @@ class Panels extends React.Component {
     }
   };
 
-
-
+  //chack day repeat
   repeatCheck(){
     if(this.props.alarm.repeat.length == null){
       console.log('null');
@@ -83,8 +82,6 @@ class Panels extends React.Component {
   //gender chack 
   activeGender(e){
     var gender = e.target;
-
-    console.log(gender.innerText)
     if(e.target.className === 'noActive'){
       e.target.className = 'active'
       axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${this.props.alarm._id}&keyupdate=filter.gender&valueupdate=${gender.innerText[0]}`)
@@ -94,116 +91,76 @@ class Panels extends React.Component {
     }
     else{
       e.target.className = 'noActive'
-      
-      //console.log(e.target)
-    }
-      
+    }  
   }
   genderChack(gender, type ){
       if(gender === type){
-        //console.log(gender.target);
         return 'active'
 
       }
       else  {
-        //console.log(gender.target);
         return 'noActive'
 
       }
-
   }
 
-  
-  //calculate sleep time
- /* calculateSleptTime(){
-    //takes the date of the alarm and removes quotes or spaces
-    var s  = this.props.alarm.time;
-    s = s.replace(/\"/g, '');
-    s = s.replace(/\s/g, '');
-
-    //split the time to hours and minutes
-    var time = s.split(/\:|\-/g);
-    var dat = new Date();
-    dat.setHours(time[0]);
-    dat.setMinutes(time[1]);
-
-    //calculate the sleep time from now to the set alarm time
-    var d = new Date();
-    if(d.getHours() > dat.getHours()){
-        d.setHours(d.getHours() - dat.getHours());    
-    }else{
-        d.setHours(dat.getHours() - d.getHours());  
-    }
-    if(d.getMinutes() > dat.getMinutes()){
-        d.setMinutes(d.getMinutes() - dat.getMinutes());
-    }else{
-        d.setMinutes(dat.getMinutes() - d.getMinutes());
-    }
-    var result = d.getHours() +':'+ d.getMinutes();
-    return <span>{result}</span>
-}*/
-
-
-//time handle
- handleClose = () => {
-   this.setState({ open: false, time: this.props.alarm.time });
- };
- handleAccapt = (data) => {
-   axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${data.props.alarm._id}&keyupdate=time&valueupdate=${this.state.time}`)
-   .then(res => {
-     console.log(res);
-   })
-   this.setState({open: false });
-};
-
-
-//country update
- countryupdate = (Country) => {
-   this.setState({country: Country})
-   axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${this.props.alarm._id}&keyupdate=filter.country&valueupdate=${Country}`)
-   .then(res => {
-     console.log(res);
-   })
- }
-
-//day chack  
-activerepeat(e, type){
-  if(e.target.className === 'noActiveDay'){
-        e.target.className = 'activeDay'
-        axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${this.props.alarm._id}&keyupdate=repeat.${type}&valueupdate=true`)
-        .then(res => {
-          console.log(res);
-        })
-   }
-  else{
-        e.target.className = 'noActiveDay';
-        axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${this.props.alarm._id}&keyupdate=repeat.${type}&valueupdate=false`)
-        .then(res => {
-          console.log(res);
-        })
-   
-  }
-}
-repeatChack(repeat, type ){
-  if(repeat[type] === true)
-    return 'activeDay'
-  else{
-    return 'noActiveDay'
-  }
-}
-
-onSliderChange = (value) => {
-    this.setState({min: value[0], max: value[1]});
-    var temp = `${value[0]}-${value[1]}`;               //put to DB
-
-    axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${this.props.alarm._id}&keyupdate=filter.age&valueupdate=${temp}`)
+  //time handle
+  handleClose = () => {
+    this.setState({ open: false, time: this.props.alarm.time });
+  };
+  handleAccapt = (data) => {
+    axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${data.props.alarm._id}&keyupdate=time&valueupdate=${this.state.time}`)
     .then(res => {
       console.log(res);
     })
-}
+    this.setState({open: false });
+  };
 
 
+  //country update
+  countryupdate = (Country) => {
+    this.setState({country: Country})
+    axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${this.props.alarm._id}&keyupdate=filter.country&valueupdate=${Country}`)
+    .then(res => {
+      console.log(res);
+    })
+  }
 
+  //day chack  
+  activerepeat(e, type){
+    if(e.target.className === 'noActiveDay'){
+          e.target.className = 'activeDay'
+          axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${this.props.alarm._id}&keyupdate=repeat.${type}&valueupdate=true`)
+          .then(res => {
+            console.log(res);
+          })
+    }
+    else{
+          e.target.className = 'noActiveDay';
+          axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${this.props.alarm._id}&keyupdate=repeat.${type}&valueupdate=false`)
+          .then(res => {
+            console.log(res);
+          })
+    
+    }
+  }
+  repeatChack(repeat, type ){
+    if(repeat[type] === true)
+      return 'activeDay'
+    else{
+      return 'noActiveDay'
+    }
+  }
+
+  onSliderChange = (value) => {
+      this.setState({min: value[0], max: value[1]});
+      var temp = `${value[0]}-${value[1]}`;               //put to DB
+
+      axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${this.props.alarm._id}&keyupdate=filter.age&valueupdate=${temp}`)
+      .then(res => {
+        console.log(res);
+      })
+  }
 
   render() {
     //const percentage = this.calculateSleptTime();

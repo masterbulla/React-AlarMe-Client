@@ -32,7 +32,8 @@ class CreateAlarm extends React.Component {
       active: true,
       time: "00:00",
       age: "",
-      repeat: [{
+      gender: 'M',
+      repeat: {
         monday: false,
         tuesday: false,
         wednesday: false,
@@ -40,112 +41,103 @@ class CreateAlarm extends React.Component {
         friday: false,
         saturday: false,
         sunday: false
-      }]
+      }
     };
   }
 
-  //time handle
+//Time pick
  handleClose = () => {
   this.setState({ open: false});
 };
 handleAccapt = (data) => {
   this.setState({time: data.state.time});
-  /*axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${data.props.alarm._id}&keyupdate=time&valueupdate=${this.state.time}`)
-  .then(res => {
-    console.log(res);
-  })*/
-  
   this.setState({open: false });
 };
 
- //remove the component
+ //Removeing the component
   removeComponent(){
     this.props.onChange(this)
   }
 
-
-  //switch handle morning awk
+  //Switch handle morning awk (on\off)
   handleChange = name => event => {
     this.setState({ [name]: event.target.checked });
-    
     if(event.target.checked === false){
-        /*axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${this.props.alarm._id}&keyupdate=active&valueupdate=false`)
-        .then(res => {
-          console.log(res);
-        })*/
         this.setState({active: false})
       }
     else{
-       /* axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${this.props.alarm._id}&keyupdate=active&valueupdate=true`)
-        .then(res => {
-          console.log(res);
-        })*/
         this.setState({active: true})
     }
   };
 
-  //country update
+  //Country update
  countryupdate = (Country) => {
-   console.log(Country);
-  /*axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${this.props.alarm._id}&keyupdate=filter.country&valueupdate=${Country}`)
-  .then(res => {
-    console.log(res);
-  })*/
+   this.setState({country: Country});
 }
 
 
-//gender chack 
+//Gender (M\F) 
 activeGender(e){
+  var gender  = e.target;
+  var temp = gender.innerText
+  
+  
   if(e.target.className === 'noActiveAlarm'){
     e.target.className = 'activeAlarm'
-    console.log(e.target);
+    this.setState({gender: temp[0]});
   }
   else{
     e.target.className = 'noActiveAlarm'
-    console.log(e.target)
   }
-    
 }
 
-//age range change
+//Age range change
 onSliderChange = (value) => {
   this.setState({min: value[0], max: value[1]});
   var temp = `${value[0]}-${value[1]}`;               //put to DB
-  console.log(temp);    
   this.setState({age: temp});                            
-  /*axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${this.props.alarm._id}&keyupdate=filter.age&valueupdate=${temp}`)
-  .then(res => {
-    console.log(res);
-  })*/
 }
 
-//day chack  
+//Day repaeat chack  
 activerepeat(e, type){
-  console.log(type);
   if(e.target.className === 'noActiveDayAlarm'){
         e.target.className = 'activeDayAlarm';
-        //this.setState({[type]: true});
-        /*axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${this.props.alarm._id}&keyupdate=repeat.${type}&valueupdate=true`)
-        .then(res => {
-          console.log(res);
-        })*/
+        this.state.repeat[type] = true;
    }
   else{
         e.target.className = 'noActiveDayAlarm';
-        //this.setState({repeat.[type]: false});
-        /*axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${this.props.alarm._id}&keyupdate=repeat.${type}&valueupdate=false`)
-        .then(res => {
-          console.log(res);
-        })*/
-   
+        this.state.repeat[type] = false;
   }
 }
 
-//save alarm
+//Save Alarm
 saveAlarm(){
-  console.log(this.state);
-
-
+   axios.post(`https://alarme-app.herokuapp.com/insertalarm`,{ 
+        "filter": {
+          "country": this.state.country,
+          "gender": this.state.gender,
+          "age": this.state.age
+        },
+        "repeat": {
+            "monday": this.state.repeat.monday,
+            "tuesday":  this.state.repeat.tuesday,
+            "wednesday":  this.state.repeat.wednesday,
+            "thursday":  this.state.repeat.thursday,
+            "friday":  this.state.repeat.friday,
+            "saturday":  this.state.repeat.saturday,
+            "sunday":  this.state.repeat.sunday
+        },
+        "id": global.GmailID,
+        "time": this.state.time,
+        "active": true,
+        "morningAwakning": this.state.active,
+        "creatorName": global.fullName,
+        "creatorAge": global.age,
+        "sleepTime": "12:51",
+    })
+    .then(res => {
+        console.log(res);
+    })
 }
 
 

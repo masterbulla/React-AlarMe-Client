@@ -13,16 +13,20 @@ class Get extends Component{
           counter: 1
         }
         this.eachAlarm   = this.eachAlarm.bind(this);
-
-       
     }
 
     componentDidMount() {
-      
-        var profile = localStorage.getItem('userProfile');
+        var url = null;
+        //read the id of the login user
+        var profile = global.GmailID;
+        
+        if(profile === null)
+            url ="https://alarme-app.herokuapp.com/getalarm?id=114530631895967788443";
+        else
+            url ="https://alarme-app.herokuapp.com/getalarm?id="+profile;
 
-        const url ="https://alarme-app.herokuapp.com/getalarm?id=" +profile.replace(/['"]+/g, '');
-        console.log("YRl: "+ url)
+
+        //read all alarm data from DB
         fetch(url).then((res) => {
             if(res.statusText === 'Internal Server Error'){
                 return 'error';
@@ -51,27 +55,32 @@ class Get extends Component{
                 return 0;
             })
         })
-      }
+    }
 
-      eachAlarm (data ,i) {
+    //return alarm components
+    eachAlarm (data ,i) {
         return (
             <Panels key={i} alarm={data}/>
         );
-      }
+    }
 
+    //Remove Create alarm if user click on delete
     removeComponent(data){ 
         var remvComponent = ReactDOM.findDOMNode(data).parentNode;
         ReactDOM.unmountComponentAtNode(remvComponent);
-
     }
 
+    //get create alarm click from headed file (user click on icon alarm)
     componentWillReceiveProps(){
-        this.state.alarm.map(()=>{
+        console.log('beni');
+
+       // this.state.alarm.map(()=>{
             ReactDOM.render(<CreateAlarm key={123}  onChange={this.removeComponent}/>, document.getElementById('c'));
-            return 0;
-        });    
+           // return 0;
+        //});    
     }
     
+    //return alarm component
     render(){
         return(
             <div>

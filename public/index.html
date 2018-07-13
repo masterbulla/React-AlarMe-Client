@@ -62,11 +62,7 @@
           fetch("http://localhost:3030/profile?id="+profile.getId()).then((res) => {
           return res.json();
         }).then((data) => {
-              
-                   localStorage.setItem('userProfile',JSON.stringify(data.profile[0].id));
-                
-
-
+            localStorage.setItem('userProfile',JSON.stringify(data.profile[0].id));
         });
       };
     </script>
