@@ -82,12 +82,19 @@ class Panels extends React.Component {
 
   //gender chack 
   activeGender(e){
+    var gender = e.target;
+
+    console.log(gender.innerText)
     if(e.target.className === 'noActive'){
       e.target.className = 'active'
-      //console.log(e.target);
+      axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${this.props.alarm._id}&keyupdate=filter.gender&valueupdate=${gender.innerText[0]}`)
+        .then(res => {
+          console.log(res);
+        })
     }
     else{
       e.target.className = 'noActive'
+      
       //console.log(e.target)
     }
       

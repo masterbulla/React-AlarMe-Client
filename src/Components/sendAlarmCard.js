@@ -2,6 +2,7 @@ import {Panel} from 'react-bootstrap';
 import React from 'react';
 import '../index.css';
 import ConfirmationDialog from './Country';
+import images from './images';
 
 class SendPanels extends React.Component {
   constructor(props, context) {
@@ -14,6 +15,7 @@ class SendPanels extends React.Component {
     this.repeatCheck = this.repeatCheck.bind(this);
     this.morningChack = this.morningChack.bind(this);
     this.calculateSleptTime = this.calculateSleptTime.bind(this);
+    this.getImage = this.getImage.bind(this);
   }
 
   repeatCheck(){
@@ -23,6 +25,12 @@ class SendPanels extends React.Component {
     else{
       return <small>Repeat</small>
     }
+  }
+
+  getImage(id){
+    console.log(id)
+    console.log(images[id]);
+    return (images[id])
   }
 
   morningChack(){
@@ -68,8 +76,8 @@ class SendPanels extends React.Component {
         <Panel ontoggle={this.state.open} id="collapsible-panel-example-2"  expanded={this.state.open}>
           <Panel.Heading className={{ 'opacity0': this.state.open }}>
             <Panel.Title toggle>
-                <img className="profile-picture" src={require('../static/kim-kardashian.jpg')} alt="refresh" />
-                <span className="name-of">kim Kardashian</span>
+                <img className="profile-picture" src={this.getImage(this.props.alarm.creatorName)} alt="refresh" />
+                <span className="name-of">{this.props.alarm.creatorName}</span>
                 <img className="wake-up" src={require('../static/alarm-clock.svg')} alt="refresh" /><span className="time-style" onClick={ ()=> this.setState({ open: !this.state.open })}>{this.props.alarm.time}</span><br/>
                 <span className="age-gender" onClick={ ()=> this.setState({ open: !this.state.open })}><img className="gender-icon" src={require('../static/woman.svg')} alt="refresh" />{this.props.alarm.filter.age}, {this.props.alarm.filter.gender}</span>
                 <span className="country-style" onClick={ ()=> this.setState({ open: !this.state.open })}><img className="global-img" src={require('../static/global.svg')} alt="global"/> {this.props.alarm.filter.country}</span>
@@ -93,7 +101,7 @@ class SendPanels extends React.Component {
                     </div>
                   </div>
                   <div className="width-50-percent">
-                    <img className="main-picture" src={require('../static/kim-kardashian.jpg')} alt="kim-kardashian" />
+                    <img className="main-picture" src={this.getImage(this.props.alarm.creatorName)}  alt="kim-kardashian" />
                   </div>
                   <div className="width-25-percent pos-40px-bottom">
                     <div className="D8D8D8-color">Country</div>
