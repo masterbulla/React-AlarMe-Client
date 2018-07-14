@@ -1,5 +1,5 @@
 const images = {
-	  'Kim Kardashian': require('../static/kim-kardashian.jpg'),
+	  'Kim Kardashian': require('../static/kim.svg'),
 	  'Vladimir Putin': require('../static/putin.svg'),
 	  'Israel'		: require('../static/israel.svg'),
 	  'Russia'		: require('../static/russia.svg'),

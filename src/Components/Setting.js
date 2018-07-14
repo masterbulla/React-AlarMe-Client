@@ -33,7 +33,7 @@ class Setting extends Component{
         if(profile === null)
             url ="https://alarme-app.herokuapp.com/setting?id=114530631895967788443";
         else
-            url ="https://alarme-app.herokuapp.com/setting?id=114530631895967788443";
+            url =`https://alarme-app.herokuapp.com/setting?id=${profile}`;
 
 
         //read all alarm data from DB
@@ -55,6 +55,8 @@ class Setting extends Component{
                 nationalRington: data.setting.nationalRington,
                 friendAlert: data.setting.friendAlert,
                 morningTip: data.setting.morningTip,
+                checkedB:  data.setting.nationalRington,
+                checkedA:  data.setting.friendAlert
             })
             return 0;
         })
