@@ -72,12 +72,7 @@ class Get extends Component{
 
     //get create alarm click from headed file (user click on icon alarm)
     componentWillReceiveProps(){
-        console.log('beni');
-
-       // this.state.alarm.map(()=>{
-            ReactDOM.render(<CreateAlarm key={123}  onChange={this.removeComponent}/>, document.getElementById('c'));
-           // return 0;
-        //});    
+        ReactDOM.render(<CreateAlarm key={123}  onChange={this.removeComponent}/>, document.getElementById('c'));      
     }
     
     //return alarm component

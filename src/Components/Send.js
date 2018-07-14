@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-//import {NavLink} from 'react-router-dom';
 import SendPanels from './sendAlarmCard'
+import axios from 'axios';
+
 
 class Send extends Component{
 
@@ -8,11 +9,16 @@ class Send extends Component{
         super(props);
         this.state = {
             alarm: [
-          ]
+          ],
+          showResults: true
         }
         this.eachAlarm   = this.eachAlarm.bind(this);
        
       }
+
+      onClickHandler = ()=>{
+        this.setState(prev => ({showResults: !prev.showResults}));
+      };
 
     componentDidMount() {
 
@@ -55,8 +61,9 @@ class Send extends Component{
 
       eachAlarm (data ,i) {
         return (
-            <SendPanels key={i} alarm={data}/>
- 
+           <div> 
+            { data.active ? <SendPanels className={'send'+i} key={i} alarm={data} onChange={this.update} style={{display: 'none'}}/> : null}
+           </div>
         );
       }
     

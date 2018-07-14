@@ -326,7 +326,8 @@ a:focus, a:hover {
 }
 
 /*-------------------------------------SendAlarm------------------------------*/
-
+#send-alarm{
+}
 .profile-picture{
     width: 58px;
     height: 58px;

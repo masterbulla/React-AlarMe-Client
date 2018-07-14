@@ -1,17 +1,17 @@
 import {Panel} from 'react-bootstrap';
 import React from 'react';
 import '../index.css';
-import ConfirmationDialog from './Country';
 import images from './images';
 import genderImage from './gender';
 import flag from './flags'
+
 
 class SendPanels extends React.Component {
   constructor(props, context) {
     super(props, context);
 
     this.state = {
-      open: false
+      open: false,
     };
 
     this.repeatCheck = this.repeatCheck.bind(this);
@@ -30,7 +30,7 @@ class SendPanels extends React.Component {
   }
 
   getImage(id){
-    return (images[id])
+      return (images[id])
   }
 
   getGenderImage(gender){
@@ -41,65 +41,68 @@ class SendPanels extends React.Component {
       return (flag[country])
   }
   morningChack(){
-    if(this.props.alarm.morningAwakning === true){
-      return <p><img src={require('../static/alarm-clock.svg')} alt="alarm"/>Morning Awakening</p>
-    }else{
-      return <p></p>
-    }
+      if(this.props.alarm.morningAwakning === true){
+        return <p><img src={require('../static/alarm-clock.svg')} alt="alarm"/>Morning Awakening</p>
+      }else{
+        return <p></p>
+      }
   }
 
   weaken(alartime){
-    var now = new Date();
-    alartime= alartime.replace(/\"/g, '');
-    alartime = alartime.replace(/\s/g, '');
-    var time = alartime.split(/\:|\-/g);
-    var hr, min;
-    if(now.getHours() > time[0]){
-       hr = now.getHours() - time[0];
-    }else{
-       hr = time[0] - now.getHours();
-    }
-    if(now.getMinutes() > time[1]){
-      min = now.getMinutes() - time[1];
-    }else{
-      min = time[1] - now.getMinutes();
-    }
-    hr = hr*60;
-    hr = hr + min;
-    var result = hr;
-    result = Math.round(result);
-    return <span>{result}</span>
+      var now = new Date();
+      alartime= alartime.replace(/\"/g, '');
+      alartime = alartime.replace(/\s/g, '');
+      var time = alartime.split(/\:|\-/g);
+      var hr, min;
+      if(now.getHours() > time[0]){
+        hr = now.getHours() - time[0];
+      }else{
+        hr = time[0] - now.getHours();
+      }
+      if(now.getMinutes() > time[1]){
+        min = now.getMinutes() - time[1];
+      }else{
+        min = time[1] - now.getMinutes();
+      }
+      hr = hr*60;
+      hr = hr + min;
+      var result = hr;
+      result = Math.round(result);
+      return <span>{result}</span>
   }
 
   calculateSleptTime(){
-      //takes the date of the alarm and removes quotes or spaces
-    var s  = this.props.alarm.sleepTime;
-    s = s.replace(/\"/g, '');
-    s = s.replace(/\s/g, '');
+        //takes the date of the alarm and removes quotes or spaces
+      var s  = this.props.alarm.sleepTime;
+      s = s.replace(/\"/g, '');
+      s = s.replace(/\s/g, '');
 
-    //split the time to hours and minutes
-    var time = s.split(/\:|\-/g);
-    var dat = new Date();
-    dat.setHours(time[0]);
-    dat.setMinutes(time[1]);
+      //split the time to hours and minutes
+      var time = s.split(/\:|\-/g);
+      var dat = new Date();
+      dat.setHours(time[0]);
+      dat.setMinutes(time[1]);
 
-    //calculate the sleep time from now to the set alarm time
-    var d = new Date();
-    if(d.getHours() > dat.getHours()){
-        d.setHours(d.getHours() - dat.getHours());    
-    }else{
-        d.setHours(dat.getHours() - d.getHours());  
-    }
-    if(d.getMinutes() > dat.getMinutes()){
-        d.setMinutes(d.getMinutes() - dat.getMinutes());
-    }else{
-        d.setMinutes(dat.getMinutes() - d.getMinutes());
-    }
-    var result = d.getHours() +':'+ d.getMinutes();
-    return <span>{result}</span>
+      //calculate the sleep time from now to the set alarm time
+      var d = new Date();
+      if(d.getHours() > dat.getHours()){
+          d.setHours(d.getHours() - dat.getHours());    
+      }else{
+          d.setHours(dat.getHours() - d.getHours());  
+      }
+      if(d.getMinutes() > dat.getMinutes()){
+          d.setMinutes(d.getMinutes() - dat.getMinutes());
+      }else{
+          d.setMinutes(dat.getMinutes() - d.getMinutes());
+      }
+      var result = d.getHours() +':'+ d.getMinutes();
+      return <span>{result}</span>
   }
 
-  
+  update(data){
+    console.log(data);
+  }
+
   render() {
     return (
       <div>
@@ -147,34 +150,12 @@ class SendPanels extends React.Component {
                 <div className="text-center but-wake-up"><button>wake-up</button></div>
                 <div className="text-center D8D8D8-color"><span>Skip Kim</span></div>
               </div>
-
             </Panel.Body>
           </Panel.Collapse>
         </Panel>
-
       </div> 
     );
   }
 }
 
 export default SendPanels;
-
-/*
-
-{this.props.alarm.time}
-
-
-                  {this.repeatCheck(this.props.alarm.repeat)}
-
-
-                  {this.props.alarm.filter.country}
-
-               {this.morningChack()}
-               <p><img src={require('../static/volume-bars.svg')} alt="volume"/> Filter Alarm personal</p>
-               <p>Country</p>
-               <ConfirmationDialog/>
-               <p>Gender</p>
-               {this.props.alarm.filter.age}<br/>
-               {this.props.alarm.filter.gender}<br/>
-               {this.props.alarm.repeat}<br/>
-                  */
