@@ -201,7 +201,7 @@ class Panels extends React.Component {
                               <span><img src={require('../static/global.svg')} alt="global" /> {this.state.country}</span>
                               <span><img src={require('../static/refresh.svg')} alt="refresh"/>{this.repeatCheck(this.props.alarm.repeat)}</span>
                           </div>
-                          <hr />
+                          <hr className="alarm-hr"/>
                     </Panel.Title>
               </Panel.Heading>
               <Panel.Collapse>

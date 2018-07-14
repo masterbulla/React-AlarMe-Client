@@ -1,0 +1,21 @@
+<svg id="Group_5_Copy" data-name="Group 5 Copy" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 178 31">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ed2a3a;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        font-size: 12.48px;
+        font-family: BPreplay;
+      }
+    </style>
+  </defs>
+  <rect id="Rectangle_31_Copy_2" data-name="Rectangle 31 Copy 2" class="cls-1" width="178" height="31" rx="2.88"/>
+  <path id="Fill_1" data-name="Fill 1" class="cls-2" d="M13.388,2.172,11.424.087a.269.269,0,0,0-.4,0L4.21,7.323,2.443,5.448a.269.269,0,0,0-.4,0L.082,7.533a.311.311,0,0,0,0,.421l3.929,4.17a.269.269,0,0,0,.4,0l8.98-9.531a.311.311,0,0,0,0-.421" transform="translate(9.622 8.455)"/>
+  <text id="Connect_With_Google" data-name="Connect With Google" class="cls-3" transform="translate(30.789 8.697)"><tspan x="0" y="11">Connect With Google</tspan></text>
+</svg>

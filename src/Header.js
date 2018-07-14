@@ -57,6 +57,9 @@ class Header extends Component{
         this.state = {
             editing: true,
         }
+        global.GmailID = '';
+        global.fullName = '';
+        global.age = 0
 
         this.renderSetting = this.renderSetting.bind(this);
         this.renderAlarm   = this.renderAlarm.bind(this);

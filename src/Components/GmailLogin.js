@@ -11,9 +11,6 @@ class Login extends React.Component{
   
   constructor (props, context) {
     super(props, context);
-    global.GmailID = '';
-    global.fullName = '';
-    global.age = 0
   }
  
   responseGoogle (googleUser) {
@@ -56,7 +53,9 @@ class Login extends React.Component{
                       fetchBasicProfile={false}
                       responseHandler={this.responseGoogle}
                       buttonText="Login With Google"
-                      disabledStyle/>
+                      
+                      
+                      />
           <GoogleLogout
                       buttonText="Logout"
                       className="button-logout"

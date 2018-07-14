@@ -307,7 +307,7 @@ a:focus, a:hover {
 }
 
 
-hr{
+.alarm-hr{
   position: absolute;
   width: 90%;
   top: 63px;
@@ -510,4 +510,150 @@ hr{
 
 .g-signin2{
     border: 3px solid black;
+}
+
+
+
+
+/*-------------------------------------------setting---------------------------*/
+.settingBackground{
+  margin: 10px auto;
+  width: 349px;
+  height: 500px;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+}
+
+.setting-header{
+  position: relative;
+  width: 95%;
+  margin: auto;
+}
+
+.setting-header img:nth-child(1){
+  width: 130px;
+  height: 111px;
+  margin-top: 20px;
+}
+
+.setting-header span:nth-of-type(1){
+  position: absolute;
+  margin-top: 20px;
+ 
+  color: #5E636F;
+  font-size: 20px;
+  font-family: BPreplay;
+
+}
+
+.setting-header img:nth-of-type(2), .setting-header img:nth-of-type(3){
+  margin-top: 8px;
+  border-radius: 2.88px;
+  width: 178px;
+  height: 31px; 
+  font-family: BPreplay;
+}
+
+.setting-header img:nth-of-type(3){
+  position: absolute;
+  top: 90px;
+  right: 27px;
+  width: 173px;
+}
+
+.setting-hr{
+  width: 90%;
+  color: #E5E7EE;
+}
+
+/*setting score*/
+.setting-score{
+  width: 90%;
+  margin: -8px auto;
+
+}
+.setting-score span:nth-of-type(1){
+  color: #5E636F;
+  font-size: 20px;
+  margin-bottom: 10px;
+  font-family: BPreplay;
+  padding-right: 50px; 
+}
+
+.setting-score span:nth-of-type(2){
+  color: #9FA5B4;
+  font-size: 14px;
+  margin-top: 10px;
+  font-family: BPreplay;
+  opacity: 0.7;
+}
+.setting-score span:nth-of-type(2) b{
+  color: #707070;
+  font-family: BPrepalyBold;
+}
+
+/*setting-national*/
+.setting-national {
+  width: 90%;
+  margin: -8px auto;
+}
+
+
+.setting-national span:nth-of-type(1) {
+  color: #5E636F;
+  font-family: BPreplay;
+  font-size: 20px;
+}
+
+.setting-national span:nth-of-type(2) {
+  color: #9FA5B4;
+  font-family: BPreplay;
+  font-size: 12px;
+}
+
+/*setting-friend*/
+.setting-friend{
+  width: 90%;
+  margin: -8px auto;
+
+}
+
+.setting-friend span:nth-of-type(1) {
+  color: #5E636F;
+  font-family: BPreplay;
+  font-size: 20px;
+}
+
+.setting-friend span:nth-of-type(2) {
+  color: #9FA5B4;
+  font-family: BPreplay;
+  font-size: 12px;
+}
+
+/*tip*/
+.setting-tip{
+  width: 90%;
+  margin: -8px auto;
+  color: #5E636F;
+  font-family: BPreplay;
+  font-size: 20px;
+  padding-top: 10px;
+}
+.setting-tip span{
+  
+  color: #9FA5B4;
+  margin-left:30px;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+/*text area tip*/
+#popover-contained{
+ 
+}
+
+.setting-area{
+  width: 200px;
+  font-family: BPreplay;
+  color: #9fa5b4;
 }
