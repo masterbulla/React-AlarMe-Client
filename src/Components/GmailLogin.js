@@ -1,29 +1,12 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { GoogleLogin } from 'react-google-login-component';
 import { GoogleLogout } from 'react-google-login';
 import axios from 'axios';
-import {Form,FormGroup, Col, FormControl, ControlLabel, Button} from 'react-bootstrap';
-
-
-const success = response => {
-  console.log(response)
-}
-
-const error = response => {
-  console.error(response)
-}
-
+import {Form,FormGroup, Col, FormControl, ControlLabel} from 'react-bootstrap';
 
 class Login extends React.Component{
-  
-  constructor (props, context) {
-    super(props, context);
 
-  }
-
- 
   responseGoogle (googleUser) {
-      var id_token = googleUser.getAuthResponse().id_token;
       var googleId = googleUser.getId();
       var BasicProfile = googleUser.getBasicProfile();
 
@@ -35,16 +18,13 @@ class Login extends React.Component{
       .then(res => {
           global.fullName =  res.data.fullName;
           global.age = res.data.age;
+          console.log(global.age);
+          console.log(res.data.fullName);
       })
 
       //anything else you want to do(save to localStorage)...
       fetch("https://alarme-app.herokuapp.com/profile?id="+googleUser.getId()).then((res) => {
-            console.log("ID: " + BasicProfile.getId()); // Don't send this directly to your server!
-            console.log('Full Name: ' + BasicProfile.getName());
-            console.log('Given Name: ' + BasicProfile.getGivenName());
-            console.log('Family Name: ' + BasicProfile.getFamilyName());
-            console.log("Image URL: " + BasicProfile.getImageUrl());
-            console.log("Email: " + BasicProfile.getEmail());
+
             return res.json();
       }).then((data) => {
                 if(data.profile.length === 0){
@@ -65,7 +45,6 @@ class Login extends React.Component{
   }
 
   render () {
-    const { classes } = this.props;
       return (
         <div className="login-div">
           <Form horizontal>
@@ -112,8 +91,6 @@ class Login extends React.Component{
                         fontFamily: 'BPrepalyBold',
 
                       }}
-                      onSuccess={success}
-                      onFailure={error}
                       />
           <GoogleLogout
                       buttonText="Logout"

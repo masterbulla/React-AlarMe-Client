@@ -99,8 +99,8 @@ class SendPanels extends React.Component {
       return <span>{result}</span>
   }
 
-  update(data){
-    console.log(data);
+  wakeup(){
+    console.log('beni');
   }
 
   render() {
@@ -115,10 +115,8 @@ class SendPanels extends React.Component {
                 <span className="age-gender" onClick={ ()=> this.setState({ open: !this.state.open })}><img className="gender-icon" src={this.getGenderImage(this.props.alarm.filter.gender)} alt="refresh" />{this.props.alarm.filter.age}, {this.props.alarm.filter.gender}</span>
                 <span className="country-style" onClick={ ()=> this.setState({ open: !this.state.open })}><img className="global-img" src={require('../static/global.svg')} alt="global"/> {this.props.alarm.filter.country}</span>
                 <span className="can-be">Can be weaken in {this.weaken(this.props.alarm.time)} minutes</span>
-                
             </Panel.Title>
           </Panel.Heading>
-
           <Panel.Collapse>
             <Panel.Body>
               <div>
@@ -147,7 +145,7 @@ class SendPanels extends React.Component {
                 </div>
                 <div className="text-center"><span className="name-main">{this.props.alarm.creatorName}</span></div>
                 <div className="text-center D8D8D8-color">{this.props.alarm.time} {this.morningChack()}</div>
-                <div className="text-center but-wake-up"><button>wake-up</button></div>
+                <div className="text-center but-wake-up"><button onClick={()=> this.wakeup()}>wake-up</button></div>
                 <div className="text-center D8D8D8-color"><span>Skip Kim</span></div>
               </div>
             </Panel.Body>

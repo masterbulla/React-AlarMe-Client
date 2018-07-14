@@ -326,8 +326,7 @@ a:focus, a:hover {
 }
 
 /*-------------------------------------SendAlarm------------------------------*/
-#send-alarm{
-}
+
 .profile-picture{
     width: 58px;
     height: 58px;
@@ -340,7 +339,7 @@ a:focus, a:hover {
     font-size: 14px !important;
     position: relative !important;
     top: 16px !important;
-    left: -90px !important;
+    left: -120px !important;
 }
 
 .name-of{
@@ -354,6 +353,7 @@ a:focus, a:hover {
 
 .global-img{
     width: 10px !important;
+    margin-left: 10px;
 }
 
 .country-style{
@@ -375,7 +375,7 @@ a:focus, a:hover {
 .wake-up{
     width: 10px !important;
     position: relative !important;
-    left: -94px !important;
+    left: -125px !important;
     top: 16px !important;
 }
 

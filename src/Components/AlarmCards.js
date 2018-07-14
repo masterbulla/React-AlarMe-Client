@@ -1,7 +1,6 @@
 import {Panel} from 'react-bootstrap';
 import React from 'react';
 import '../index.css';
-import SendPanels from './sendAlarmCard';
 import ConfirmationDialog from './Country';
 import CircularProgressbar from 'react-circular-progressbar';
 import axios from 'axios';
@@ -47,7 +46,7 @@ class Panels extends React.Component {
   //update activity alarm
   handleChange = name => event => {
     this.setState({ [name]: event.target.checked });
-    <SendPanels status={this.state.time}/>
+    //<SendPanels status={this.state.time}/>
     if(event.target.checked === false){
         axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${this.props.alarm._id}&keyupdate=active&valueupdate=false`)
         .then(res => {

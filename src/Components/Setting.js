@@ -3,7 +3,7 @@ import '../index.css';
 import images from './images';
 import StarRatings from 'react-star-ratings';
 import Switch from '@material-ui/core/Switch';
-import {Popover, Overlay ,ButtonToolbar,Button} from 'react-bootstrap'
+import {Popover, Overlay ,ButtonToolbar} from 'react-bootstrap'
 import axios from 'axios';
 
 class Setting extends Component{

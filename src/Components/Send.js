@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import SendPanels from './sendAlarmCard'
-import axios from 'axios';
 
 
 class Send extends Component{
@@ -61,8 +60,8 @@ class Send extends Component{
 
       eachAlarm (data ,i) {
         return (
-           <div> 
-            { data.active ? <SendPanels className={'send'+i} key={i} alarm={data} onChange={this.update} style={{display: 'none'}}/> : null}
+           <div key={`send-panel${i}`}> 
+            { data.active ? <SendPanels key={i} alarm={data} onChange={this.update}/> : null}
            </div>
         );
       }
