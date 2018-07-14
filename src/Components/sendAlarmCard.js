@@ -53,22 +53,45 @@ class SendPanels extends React.Component {
       alartime= alartime.replace(/\"/g, '');
       alartime = alartime.replace(/\s/g, '');
       var time = alartime.split(/\:|\-/g);
-      var hr, min;
-      if(now.getHours() > time[0]){
-        hr = now.getHours() - time[0];
-      }else{
-        hr = time[0] - now.getHours();
+      var now2 = new Date();
+      now2.setHours(time[0]);
+      now2.setMinutes(time[1]);
+      var result;
+      if(Math.round(Math.abs(now - now2)/1000/60) < 59){
+        result = Math.round(Math.abs(now - now2)/1000/60);
+        return <span>{result + "   minutes"}</span>
       }
-      if(now.getMinutes() > time[1]){
-        min = now.getMinutes() - time[1];
-      }else{
-        min = time[1] - now.getMinutes();
+      else{
+        result = Math.round(Math.abs(now - now2)/1000/60/60);
+        return <span>{result + "   hours"}</span>
       }
-      hr = hr*60;
-      hr = hr + min;
-      var result = hr;
-      result = Math.round(result);
-      return <span>{result}</span>
+          
+
+      // var hr, min;
+      // if(now.getHours() > time[0]){
+      //   hr = 24 - now.getHours() - time[0];
+      // }else if(now.getHours() < time[0]){
+      //   hr = 24 - time[0] - now.getHours()
+      // }else{
+      //   hr = 24
+      // }
+      // if(now.getMinutes() > time[1]){
+      //   min = now.getMinutes() - time[1];
+      // }else{
+      //   min = time[1] - now.getMinutes();
+      // }
+      // hr = hr*60;
+      // hr = hr + min;
+      // var result = hr;
+      // result = Math.round(result);
+      // if(Math.abs(result) < 59){
+      //   result = Math.abs(result) + "  minutes";
+      //   return <span>{result}</span>
+      // }else{
+      //   result = result/60;
+      //   result = Math.round(Math.abs(result))
+      return <span>{result + "   hours"}</span>
+      // }
   }
 
   calculateSleptTime(){
@@ -100,7 +123,31 @@ class SendPanels extends React.Component {
   }
 
   wakeup(){
-    console.log('beni');
+    console.log("clicked")
+  }
+
+  istime(){
+    var alerttime = this.props.alarm.time;
+    alerttime = alerttime.replace(/\"/g, '');
+    alerttime = alerttime.replace(/\s/g, '');
+    var time = alerttime.split(/\:|\-/g);
+    var now2 = new Date();
+    now2.setHours(time[0]);
+    now2.setMinutes(time[1]);
+
+    setInterval(function(){ 
+         var now = new Date();
+         if(now.getHours() == now2.getHours() && now.getMinutes() == now2.getMinutes()){
+          console.log('equal');
+              document.getElementById("wake-but").disabled = false;
+               document.getElementById("wake-but").style.opacity = "1";
+            }else{
+              console.log('disequal')
+             document.getElementById("wake-but").disabled = true;
+             document.getElementById("wake-but").style.opacity = "0.5";
+            }
+    }, 3000);
+  
   }
 
   render() {
@@ -112,9 +159,9 @@ class SendPanels extends React.Component {
                 <img className="profile-picture" src={this.getImage(this.props.alarm.creatorName)} alt="refresh" />
                 <span className="name-of">{this.props.alarm.creatorName}</span>
                 <img className="wake-up" src={require('../static/alarm-clock.svg')} alt="refresh" /><span className="time-style" onClick={ ()=> this.setState({ open: !this.state.open })}>{this.props.alarm.time}</span><br/>
-                <span className="age-gender" onClick={ ()=> this.setState({ open: !this.state.open })}><img className="gender-icon" src={this.getGenderImage(this.props.alarm.filter.gender)} alt="refresh" />{this.props.alarm.filter.age}, {this.props.alarm.filter.gender}</span>
+                <span className="age-gender" onClick={ ()=> this.setState({ open: !this.state.open })}><img className="gender-icon" src={this.getGenderImage(this.props.alarm.filter.gender)} alt="refresh" />{this.props.alarm.creatorAge}, {this.props.alarm.filter.gender}</span>
                 <span className="country-style" onClick={ ()=> this.setState({ open: !this.state.open })}><img className="global-img" src={require('../static/global.svg')} alt="global"/> {this.props.alarm.filter.country}</span>
-                <span className="can-be">Can be weaken in {this.weaken(this.props.alarm.time)} minutes</span>
+                <span className="can-be">Can be weaken in {this.weaken(this.props.alarm.time)} </span>
             </Panel.Title>
           </Panel.Heading>
           <Panel.Collapse>
@@ -145,7 +192,7 @@ class SendPanels extends React.Component {
                 </div>
                 <div className="text-center"><span className="name-main">{this.props.alarm.creatorName}</span></div>
                 <div className="text-center D8D8D8-color">{this.props.alarm.time} {this.morningChack()}</div>
-                <div className="text-center but-wake-up"><button onClick={()=> this.wakeup()}>wake-up</button></div>
+                <div className="text-center but-wake-up"><button id="wake-but" onClick={()=> this.wakeup()}>{this.istime()}wake-up</button></div>
                 <div className="text-center D8D8D8-color"><span>Skip Kim</span></div>
               </div>
             </Panel.Body>

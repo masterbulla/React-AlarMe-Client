@@ -21,7 +21,7 @@ class Login extends React.Component{
           console.log(global.age);
           console.log(res.data.fullName);
       })
-
+      console.log(googleUser.getId())
       //anything else you want to do(save to localStorage)...
       fetch("https://alarme-app.herokuapp.com/profile?id="+googleUser.getId()).then((res) => {
 

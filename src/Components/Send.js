@@ -66,12 +66,28 @@ class Send extends Component{
         );
       }
     
+    calcul(a){
+          var now = new Date();
+
+          var first = a.time;
+          first = first.replace(/\"/g, '');
+          first = first.replace(/\s/g, '');
+          var time = first.split(/\:|\-/g);
+
+           var now2 = new Date();
+            now2.setHours(time[0]);
+            now2.setMinutes(time[1]);
+            var result = Math.abs(now - now2);
+            console.log(result)
+                return result;
+
+    }
 
 
     render(){
         return(
             <div>
-                {this.state.alarm.map(this.eachAlarm)}
+                {this.state.alarm.sort((a, b) => {return this.calcul(a) - this.calcul(b)}).map(this.eachAlarm)}
                
 
             </div>

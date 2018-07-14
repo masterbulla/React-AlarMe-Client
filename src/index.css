@@ -337,9 +337,9 @@ a:focus, a:hover {
     color: #D8D8D8 !important;
     font-family: BPrepalyBold;
     font-size: 14px !important;
-    position: relative !important;
-    top: 16px !important;
-    left: -120px !important;
+    position: absolute !important;
+    top: 44px !important;
+    left: 187px !important;
 }
 
 .name-of{
@@ -374,9 +374,9 @@ a:focus, a:hover {
 
 .wake-up{
     width: 10px !important;
-    position: relative !important;
-    left: -125px !important;
-    top: 16px !important;
+    position: absolute !important;
+    left: 175px !important;
+    top: 50px !important;
 }
 
 .gender-icon{
