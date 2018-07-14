@@ -47,9 +47,7 @@ class Header extends Component{
         position: 'absolute',
         top: '1.5px',
         width: '100%'
-
     }
-
 
     constructor(props){
         super(props);
@@ -66,7 +64,6 @@ class Header extends Component{
         this.chackRendar   = this.chackRendar.bind(this);
     }
 
-    
     chackRendar(data){
         if(data === 'alarm')
             this.setState({editing: true})
@@ -92,13 +89,15 @@ class Header extends Component{
           );
     }
 
+    
+
 
     render(){
         return(
             <header style={this.headerStyle}>
                 <img src={require('./static/Bars-Status-White.svg')} style={this.phoneUpView} alt="phone up view"/>
                 <NavLink  exact to='/' className="logo" style={this.LogoStyle} onClick={() => this.chackRendar('alarm')}>AlarmMe</NavLink>
-                <NavLink  exact to='/Setting' onClick={() => this.chackRendar('setting')}><img style={this.settingIcon} src={require('./static/settings.svg')} alt="setting icon" /></NavLink>
+                <NavLink  exact to='/setting' onClick={() => this.chackRendar('setting')}><img style={this.settingIcon} src={require('./static/settings.svg')} alt="setting icon" /></NavLink>
                 <NavLink   exact to='/get' onClick={() => this.chackRendar('alarm')}  ><img style={this.alarmIcon} src={require('./static/alarm-clock.svg')}  alt="alarm icon"/></NavLink>
                 {this.state.editing ? this.renderSetting() : this.renderAlarm()}
             </header>

@@ -7,7 +7,6 @@ import {Popover, Overlay ,ButtonToolbar,Button} from 'react-bootstrap'
 import axios from 'axios';
 
 class Setting extends Component{
-
     constructor(props){
         super(props);
         this.state = {
@@ -31,7 +30,7 @@ class Setting extends Component{
         var profile = global.GmailID;
         
         if(profile === null)
-            url ="https://alarme-app.herokuapp.com/setting?id=114530631895967788443";
+            url ="https://alarme-app.herokuapp.com/setting?id=";
         else
             url =`https://alarme-app.herokuapp.com/setting?id=${profile}`;
 
@@ -147,6 +146,10 @@ class Setting extends Component{
                         </Overlay>
                     </ButtonToolbar>
                 </div>
+
+                <div>
+               
+            </div>
                 
             </div>
         );

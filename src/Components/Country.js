@@ -16,7 +16,7 @@ const options = [
   'Israel',
   'Russia',
   'US',
-  'French',
+  'France',
   'India',
   'Argentina',
   'Brasil',
