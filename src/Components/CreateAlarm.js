@@ -176,12 +176,8 @@ saveAlarm(){
                           <div className="noActiveDayAlarm"    onClick={(e) => this.activerepeat(e, 'sunday')}>S</div>  
 
                           <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
-                              <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+                              <DialogTitle id="form-dialog-title">Create New Alarm</DialogTitle>
                                   <DialogContent>
-                                        <DialogContentText>
-                                          To subscribe to this website, please enter your email address here. We will send
-                                          updates occasionally.
-                                        </DialogContentText>
                                         <TextField autoFocus margin="dense" id="name" label="time Address" type="time" fullWidth onChange={(event, newValue) => this.setState({time: event.target.value})}/>
                                   </DialogContent>
                                   <DialogActions>
@@ -189,7 +185,7 @@ saveAlarm(){
                                           Cancel
                                         </Button>
                                         <Button onClick={(e) => this.handleAccapt(this)} color="primary">
-                                          Subscribe
+                                          Create
                                         </Button>
                                   </DialogActions>
                           </Dialog>
