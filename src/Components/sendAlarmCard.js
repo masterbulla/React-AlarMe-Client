@@ -3,7 +3,8 @@ import React from 'react';
 import '../index.css';
 import images from './images';
 import genderImage from './gender';
-import flag from './flags'
+import flag from './flags';
+import axios from 'axios';
 
 
 class SendPanels extends React.Component {
@@ -56,6 +57,10 @@ class SendPanels extends React.Component {
       var now2 = new Date();
       now2.setHours(time[0]);
       now2.setMinutes(time[1]);
+      if(now.getHours() > now2.getHours()){
+        var res = Math.round((86400000 - Math.abs(now - now2))/1000/60/60);
+        return <span>{res + "   hours"}</span>
+      }
       var result;
       if(Math.round(Math.abs(now - now2)/1000/60) < 59){
         result = Math.round(Math.abs(now - now2)/1000/60);
@@ -122,11 +127,19 @@ class SendPanels extends React.Component {
       return <span>{result}</span>
   }
 
-  wakeup(){
-    console.log("clicked")
+  wakeup(id){
+
+    var key= 'someoneWakeYouUp';
+
+     axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${id}&keyupdate=${key}&valueupdate=true`)
+            .then(res => {
+            console.log(res);
+        })
+
   }
 
-  istime(){
+  istime(identity){
+    console.log(identity)
     var alerttime = this.props.alarm.time;
     alerttime = alerttime.replace(/\"/g, '');
     alerttime = alerttime.replace(/\s/g, '');
@@ -135,18 +148,24 @@ class SendPanels extends React.Component {
     now2.setHours(time[0]);
     now2.setMinutes(time[1]);
 
-    setInterval(function(){ 
+    if(identity){
+          setInterval(function(){ 
          var now = new Date();
          if(now.getHours() == now2.getHours() && now.getMinutes() == now2.getMinutes()){
-          console.log('equal');
-              document.getElementById("wake-but").disabled = false;
-               document.getElementById("wake-but").style.opacity = "1";
+              if(document.getElementById(identity) != null){
+                document.getElementById(identity).disabled = false;
+                document.getElementById(identity).style.opacity = "1";
+              }
             }else{
-              console.log('disequal')
-             document.getElementById("wake-but").disabled = true;
-             document.getElementById("wake-but").style.opacity = "0.5";
+               if(document.getElementById(identity) != null){
+                  console.log("test")
+                  document.getElementById(identity).disabled = true;
+                  document.getElementById(identity).style.opacity = "0.5";
+               }
             }
-    }, 3000);
+       }, 3000);      
+    }
+
   
   }
 
@@ -192,7 +211,7 @@ class SendPanels extends React.Component {
                 </div>
                 <div className="text-center"><span className="name-main">{this.props.alarm.creatorName}</span></div>
                 <div className="text-center D8D8D8-color">{this.props.alarm.time} {this.morningChack()}</div>
-                <div className="text-center but-wake-up"><button id="wake-but" onClick={()=> this.wakeup()}>{this.istime()}wake-up</button></div>
+                <div className="text-center but-wake-up"><button id={'wake-but' + this.props.alarm.id} onClick={()=> this.wakeup(this.props.alarm.id)}>{this.istime('wake-but' + this.props.alarm.id)}wake-up</button></div>
                 <div className="text-center D8D8D8-color"><span>Skip Kim</span></div>
               </div>
             </Panel.Body>

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import SendPanels from './sendAlarmCard'
-
+import SendPanels from './sendAlarmCard';
+import images from './images';
 
 class Send extends Component{
 
@@ -9,14 +9,19 @@ class Send extends Component{
         this.state = {
             alarm: [
           ],
-          showResults: true
+          showResults: true,
+          popover: false
         }
         this.eachAlarm   = this.eachAlarm.bind(this);
-       
+        this.getImage    = this.getImage.bind(this);
       }
 
       onClickHandler = ()=>{
         this.setState(prev => ({showResults: !prev.showResults}));
+      };
+
+      showPopover = ()=>{
+        this.setState(prev => ({popover: !prev.popover}));
       };
 
     componentDidMount() {
@@ -50,7 +55,9 @@ class Send extends Component{
                         filter: {country: data.filter.country, gender: data.filter.gender, age: data.filter.age },
                         creatorName: data.creatorName,
                         creatorAge: data.creatorAge,
-                        sleepTime: data.sleepTime
+                        sleepTime: data.sleepTime,
+                        weaken: data.someoneWakeYouUp,
+                        id: data._id
                     }]
                 }))
                 return 0;
@@ -77,16 +84,96 @@ class Send extends Component{
            var now2 = new Date();
             now2.setHours(time[0]);
             now2.setMinutes(time[1]);
-            var result = Math.abs(now - now2);
-            console.log(result)
+            var result;
+
+            if(now.getHours() > now2.getHours()){
+                result = 86400000 - Math.abs(now - now2);
+            }else{
+                result = Math.abs(now - now2);
+            }
                 return result;
 
     }
 
+    checkIfAwake(){
+        var profile = global.GmailID;
+        var url ="https://alarme-app.herokuapp.com/getalarm?id="+profile;
+
+        setInterval(function(){ 
+        fetch(url).then((res) => {
+            if(res.statusText === 'Internal Server Error'){
+                return 'error';
+            }else
+                return res.json();    
+            
+        }).then((data) => {
+            if(data === 'error'){
+                console.log("error to get alarm");
+                return 0 ;
+            }
+            data.getAlarm.map((data) => {
+                if(data.someoneWakeYouUp == true){
+                    console.log("true")
+                    var result = "OPEN CALL";
+                        var url2 ="https://alarme-app.herokuapp.com/getalarmbyid?id="+data._id;
+                         fetch(url2).then((res) => {
+                                if(res.statusText === 'Internal Server Error'){
+                                    return 'error';
+                                }else{
+
+                                       return res.json();    
+                                }
+                                
+                            }).then((result)=>{
+                                var res = result.alarmbyid[0].creatorName;
+                                //document.getElementById('imgpic').src = this.getImage(result.alarmbyid[0].creatorName)
+                           
+                             return  `<div>${res}</div>`
+                            })
+                        
+                    }else{
+                        console.log("false")
+                        return 0;
+                    }
+                }
+            )
+
+    })}, 3000);
+    }
+
+    getImage(id){console.log(id)
+        return (images[id]);
+    }
 
     render(){
         return(
             <div>
+                <div id="popover" className={"btn-group pull-right " + (this.checkIfAwake() == 0  ? 'hidden' : 'show call-popover')}> 
+                    <div className="inside-div">
+                        <img id="imgpic" className="img-pic" src={require('../static/manuser.svg')}/>
+                        <div className="call-counter">00:03</div>
+                        <div className="calling">
+                            <img id="imgpic" className="clock" src={require('../static/alarm-clock.svg')}/>
+                            <span >Calling...</span>
+                            <div>{this.checkIfAwake()}</div>
+                            <div>
+                                <img className="lamp" src={require('../static/creative.svg')}/>
+                                <span className="tip">Tip!</span>
+                                <span className="tip-text">Good Morning!</span>
+                            </div>    
+                            <div className="parent-hang-div">
+                                <img id="imgpic" className="width-55-px" src={require('../static/mute.svg')}/>
+                                <img id="imgpic" className="hang width-55-px" src={require('../static/hang.svg')}/>
+                                <img id="imgpic" className="width-55-px" src={require('../static/speaker.svg')}/>
+                            </div>
+                            <div className="div-mute">
+                                <span className="mute-style">mute</span>
+                                <span className="end-style">end</span>
+                                <span className="speaker-style">speaker</span>
+                            </div>
+                        </div>        
+                    </div>
+                </div>
                 {this.state.alarm.sort((a, b) => {return this.calcul(a) - this.calcul(b)}).map(this.eachAlarm)}
                
 

@@ -16,7 +16,8 @@ const images = {
 	  'Norway'			: require('../static/norway.svg'),
 	  'M'           	: require('../static/man.svg'),
 	  'F'				: require('../static/woman.svg'),
-	  'Calvin Campbell'	: require('../static/Calvin.svg')
+	  'Calvin Campbell'	: require('../static/Calvin.svg'),
+	  'Angela Merkel'	: require('../static/merkel.jpeg')
 }
 
 export default images;

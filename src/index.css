@@ -660,3 +660,93 @@ a:focus, a:hover {
   font-family: BPreplay;
   color: #9fa5b4;
 }
+
+.show{
+  display: block !important;
+}
+
+.hidden{
+  display: none;
+}
+
+.call-popover{
+    height: 500px;
+    position: absolute;
+    z-index: 100;
+    background-color: black;
+    opacity: 0.8;
+    width: 360px;
+}
+.inside-div{
+    width: 300px;
+    height: 400px;
+    background-color: white;
+    position: relative;
+    left: 30px;
+    top: 60px;
+    border-radius: 15px;
+}
+.img-pic{
+    width: 140px;
+    display: block;
+    margin: auto;
+    position: relative;
+    bottom: 50px;
+}
+.clock{
+  width: 40px;
+  color: green !important;
+  position: relative;
+  bottom: 4px;
+  right: 5px;
+}
+.call-counter{
+    text-align: center;
+    font-size: 30px;
+    color: grey;
+}
+.calling{
+    color: green;
+    text-align: center;
+    font-size: 35px;
+}
+.parent-hang-div{
+  margin-top: 15px;
+}
+.hang{
+    margin-right: 15px;
+    margin-left: 15px;
+    cursor: pointer;
+}
+.width-55-px{
+  width: 55px;
+}
+.tip-text{
+      color: grey;
+    font-size: 16px;
+    margin-left: 10px;
+}
+.tip{
+  font-size: 26px;
+    color: darkslategrey;
+}
+.lamp{
+      width: 24px;
+}
+.div-mute{
+      font-size: 15px;
+    color: grey;
+}
+.mute-style{
+  position: relative;
+  right: 30px;
+}
+.speaker-style{
+    position: relative;
+    left: 45px;
+
+}
+.end-style{
+    position: relative;
+    left: 10px;
+}
