@@ -15,6 +15,7 @@ class Send extends Component{
         this.eachAlarm   = this.eachAlarm.bind(this);
         this.getImage    = this.getImage.bind(this);
         this.getSend     =  this.getSend.bind(this);
+        this.update = this.update.bind(this);
       }
 
       onClickHandler = ()=>{
@@ -30,8 +31,8 @@ class Send extends Component{
         var url = null;
         var profile = global.GmailID;
 
-        if(profile === null)
-            url ="https://alarme-app.herokuapp.com/sendalarms?id=";
+        if(profile === '')
+            url ="https://alarme-app.herokuapp.com/sendalarms?id=114530631895967788443";
         else
             url ="https://alarme-app.herokuapp.com/sendalarms?id="+profile;
 
@@ -74,6 +75,11 @@ class Send extends Component{
            </div>
         );
       }
+
+      update(data){
+          console.log(data);
+        this.setState({popover: data});
+      }
     
     calcul(a){
           var now = new Date();
@@ -101,41 +107,42 @@ class Send extends Component{
         var url ="https://alarme-app.herokuapp.com/getalarm?id="+profile;
 
         setInterval(function(){ 
-        fetch(url).then((res) => {
-            if(res.statusText === 'Internal Server Error'){
-                return 'error';
-            }else
-                return res.json();    
-            
-        }).then((data) => {
-            if(data === 'error'){
-                console.log("error to get alarm");
-                return 0 ;
-            }
-            data.getAlarm.map((data) => {
-                if(data.someoneWakeYouUp == true){
-                    var result = "OPEN CALL";
-                        var url2 ="https://alarme-app.herokuapp.com/getalarmbyid?id="+data._id;
-                         fetch(url2).then((res) => {
-                                if(res.statusText === 'Internal Server Error'){
-                                    return 'error';
-                                }else{
-
-                                       return res.json();    
-                                }
-                                
-                            }).then((result)=>{
-                                var res = result.alarmbyid[0].creatorName;
-                                //document.getElementById('imgpic').src = this.getImage(result.alarmbyid[0].creatorName)
-                           
-                             return  `<div>${res}</div>`
-                            })
-                        
-                    }else{
-                        return 0;
-                    }
+            fetch(url).then((res) => {
+                if(res.statusText === 'Internal Server Error'){
+                    return 'error';
+                }else
+                    return res.json();    
+                
+            }).then((data) => {
+                if(data === 'error'){
+                    console.log("error to get alarm");
+                    return 0 ;
                 }
-            )
+                data.getAlarm.map((data) => {
+                    console.log("sdfsdf  = " + data);
+                    if(data.someoneWakeYouUp == true){
+                        var result = "OPEN CALL";
+                            var url2 ="https://alarme-app.herokuapp.com/getalarmbyid?id="+data._id;
+                            fetch(url2).then((res) => {
+                                    if(res.statusText === 'Internal Server Error'){
+                                        return 'error';
+                                    }else{
+
+                                        return res.json();    
+                                    }
+                                    
+                                }).then((result)=>{
+                                    var res = result.alarmbyid[0].creatorName;
+                                    //document.getElementById('imgpic').src = this.getImage(result.alarmbyid[0].creatorName)
+                            
+                                return  `<div>${res}</div>`
+                                })
+                            
+                        }else{
+                            return 0;
+                        }
+                    }
+                )
 
     })}, 3000);
     }

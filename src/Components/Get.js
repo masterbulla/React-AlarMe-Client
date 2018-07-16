@@ -20,11 +20,14 @@ class Get extends Component{
         //read the id of the login user
         var profile = global.GmailID;
         
-        if(profile === null)
-            url ="https://alarme-app.herokuapp.com/getalarm?id=";
+        if(profile === ''){
+            url ="https://alarme-app.herokuapp.com/getalarm?id=114530631895967788443";
+            global.GmailID = '114530631895967788443';
+            global.fullName = 'Vladimir Putin';
+            global.age = 65;
+        }
         else
             url ="https://alarme-app.herokuapp.com/getalarm?id="+profile;
-
 
         //read all alarm data from DB
         fetch(url).then((res) => {

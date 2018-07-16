@@ -120,7 +120,7 @@ saveAlarm(){
               "wednesday":  this.state.repeat.wednesday,
               "thursday":  this.state.repeat.thursday,
               "friday":  this.state.repeat.friday,
-              "saturday":  this.state.repeat.saturday,
+              "saturday": this.state.repeat.saturday,
               "sunday":  this.state.repeat.sunday
           },
           "id": global.GmailID,

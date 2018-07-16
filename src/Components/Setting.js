@@ -29,8 +29,8 @@ class Setting extends Component{
         //read the id of the login user
         var profile = global.GmailID;
         
-        if(profile === null)
-            url ="https://alarme-app.herokuapp.com/setting?id=";
+        if(profile === '')
+            url ="https://alarme-app.herokuapp.com/setting?id=114530631895967788443";
         else
             url =`https://alarme-app.herokuapp.com/setting?id=${profile}`;
 
@@ -118,24 +118,24 @@ class Setting extends Component{
                     <img src={require('../static/facbook.svg')} alt="facbook connect"/>
                     <img src={require('../static/gmail.svg')} alt="facbook connect"/>
                 </div>
-                <hr className="setting-hr"/>
+                    <hr className="setting-hr"/>
                 <div className="setting-score">
                     <span>Your Score </span>
                     <StarRatings rating={this.state.stars} starRatedColor="#00FF6F" changeRating={this.changeRating} numberOfStars={5}name='rating' starDimension="25px" starSpacing="3px"/>
                     <br/>
                     <span><b>{this.state.stars}</b> Based on <b>{this.state.reviews}</b> AlarMe reviews</span>
                 </div>
-                <hr className="setting-hr"/>
+                    <hr className="setting-hr"/>
                 <div className="setting-national">
                     <span>National anthem Ringtone<Switch checked={this.state.checkedB} onChange={this.handleChange('National')} value="checkedB" color="primary" className="switchAlarm"/></span><br/>
                     <span>Wake people up with your national <br/>anthem</span>
                 </div>
-                <hr className="setting-hr"/>
+                    <hr className="setting-hr"/>
                 <div className="setting-friend">
                     <span>Friends alerts<Switch checked={this.state.checkedA} onChange={this.handleChange('National')}  value="checkedA" color="primary" className="switchAlarm"/></span><br/>
                     <span>Notify me when friends <br/>want to wake up</span>
                 </div>
-                <hr className="setting-hr"/>
+                    <hr className="setting-hr"/>
                 <div className="setting-tip">
                     <ButtonToolbar>
                         <p onClick={this.handleClick}>Edit morning awakening tip <span>></span></p>
@@ -145,12 +145,7 @@ class Setting extends Component{
                             </Popover>
                         </Overlay>
                     </ButtonToolbar>
-                </div>
-
-                <div>
-               
-            </div>
-                
+                </div>      
             </div>
         );
     }

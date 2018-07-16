@@ -14,6 +14,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Switch from '@material-ui/core/Switch';
 import { Range } from 'rc-slider';
 import 'rc-slider/assets/index.css';
+import moment from 'moment';
 
 
 
@@ -39,7 +40,7 @@ class Panels extends React.Component {
     this.morningChack = this.morningChack.bind(this);
     this.activeGender = this.activeGender.bind(this);
     this.genderChack = this.genderChack.bind(this);
-
+    this.testFunction = this.testFunction.bind(this);
 
   }
 
@@ -144,7 +145,6 @@ class Panels extends React.Component {
     }
   }
   repeatChack(repeat, type ){
-    console.log(repeat[type]);
     if(repeat[type] === true)
       return 'activeDay'
     else{
@@ -162,10 +162,55 @@ class Panels extends React.Component {
       })
   }
 
+  testFunction(){
+
+      var dayArray = {sunday: 0, monday: 1, tuesday:2, wednesday:3, thursday: 4, friday:5, saturday: 6}
+      var keys = Object.keys(dayArray);
+      var dbRepeat = [];
+
+      for(var i = 0; i < 7; i++){
+          var x = Object.entries(this.props.alarm.repeat[0]);
+          if(x[i][1] == true)
+            dbRepeat.push(x[i]);
+      }
+
+      if(dbRepeat.length == 0){
+        axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${this.props.alarm._id}&keyupdate=active&valueupdate=false`)
+        .then(res => {
+          console.log(res);
+        })
+        return 0;
+      }
+
+
+      var temp = 7;
+      for(var i=0; i<dbRepeat.length; i++){
+          if(dayArray[dbRepeat[i][0]] < temp)
+            temp = dayArray[dbRepeat[i][0]]
+      }
+
+      axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${this.props.alarm._id}&keyupdate=active&valueupdate=true`)
+        .then(res => {
+          console.log(res);
+      })
+
+      var times = this.props.alarm.time;
+     
+
+    
+      var now  = moment().startOf('second');
+      var then = moment().add(temp, 'days').subtract(0, 'months').year(2018).hours(times.substring(0, 2)).minutes(times.substring(3, 5)).seconds(0);
+      var ms = moment(now,"DD/MM/YYYY HH:mm:ss").diff(moment(then,"DD/MM/YYYY HH:mm:ss"));
+      var d = moment.duration(ms);
+      var s = Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss");
+      return s;
+
+  }
+
   render() {
     //const percentage = this.calculateSleptTime();
-    
-    const percentage = 10;
+   
+    const percentage = this.testFunction();
     return (
       <div>
         <Panel id="collapsible-panel-example-2"  defaultExpanded={this.state.open}>
@@ -173,7 +218,7 @@ class Panels extends React.Component {
                 <Switch checked={this.state.checkedB} onChange={this.handleChange('checkedB')} value="checkedB" color="primary" className="switch"/>
                     <Panel.Title toggle>
                           <div className="circularProgressbar">
-                                <CircularProgressbar percentage={percentage} text={`${percentage}\nHR`} strokeWidth={10}/>
+                                <CircularProgressbar percentage={percentage.substring(1,3)} text={`${percentage.substring(1,3)}\nHR`} strokeWidth={10}/>
                           </div>
                           <span className="timeSpan" onClick={(e)=> this.setState({open: true })}>
                                 {this.state.time}
@@ -215,13 +260,13 @@ class Panels extends React.Component {
                           
                           <p>Age<span>{this.state.min} - {this.state.max}</span></p>
                           <p><img src={require('../static/repeat.svg')} alt="volume"/>Repeat</p>
+                          <div className={this.repeatChack(this.props.alarm.repeat[0], 'sunday')}   onClick={(e) => this.activerepeat(e, 'sunday')}>S</div>
                           <div className={this.repeatChack(this.props.alarm.repeat[0], 'monday')}   onClick={(e) => this.activerepeat(e, 'monday')}>M</div>
-                          <div className={this.repeatChack(this.props.alarm.repeat[0], 'tuesday')}   onClick={(e) => this.activerepeat(e, 'tuesday')}>T</div>
-                          <div className={this.repeatChack(this.props.alarm.repeat[0], 'wednesday')}   onClick={(e) => this.activerepeat(e,'wednesday')}>W</div>
+                          <div className={this.repeatChack(this.props.alarm.repeat[0], 'tuesday')}   onClick={(e) => this.activerepeat(e,'tuesday')}>T</div>
+                          <div className={this.repeatChack(this.props.alarm.repeat[0], 'wednesday')}   onClick={(e) => this.activerepeat(e, 'wednesday')}>W</div>
                           <div className={this.repeatChack(this.props.alarm.repeat[0], 'thursday')}   onClick={(e) => this.activerepeat(e, 'thursday')}>T</div>
                           <div className={this.repeatChack(this.props.alarm.repeat[0], 'friday')}   onClick={(e) => this.activerepeat(e, 'friday')}>F</div>
-                          <div className={this.repeatChack(this.props.alarm.repeat[0], 'saturday')}   onClick={(e) => this.activerepeat(e, 'saturday')}>S</div>
-                          <div className={this.repeatChack(this.props.alarm.repeat[0], 'sunday')}   onClick={(e) => this.activerepeat(e, 'sunday')}>S</div>    
+                          <div className={this.repeatChack(this.props.alarm.repeat[0], 'saturday')}   onClick={(e) => this.activerepeat(e, 'saturday')}>S</div>    
                           <Range  className="range"  defaultValue={[this.state.min, this.state.max]} min={0} max={120} onChange={this.onSliderChange}/>
                     </Panel.Body>
               </Panel.Collapse>
