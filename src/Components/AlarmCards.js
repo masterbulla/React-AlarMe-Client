@@ -46,7 +46,6 @@ class Panels extends React.Component {
   //update activity alarm
   handleChange = name => event => {
     this.setState({ [name]: event.target.checked });
-    //<SendPanels status={this.state.time}/>
     if(event.target.checked === false){
         axios.get(`https://alarme-app.herokuapp.com/updatealarm?id=${this.props.alarm._id}&keyupdate=active&valueupdate=false`)
         .then(res => {
@@ -145,6 +144,7 @@ class Panels extends React.Component {
     }
   }
   repeatChack(repeat, type ){
+    console.log(repeat[type]);
     if(repeat[type] === true)
       return 'activeDay'
     else{

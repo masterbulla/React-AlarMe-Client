@@ -6,7 +6,6 @@ import genderImage from './gender';
 import flag from './flags';
 import axios from 'axios';
 
-
 class SendPanels extends React.Component {
   constructor(props, context) {
     super(props, context);
@@ -22,12 +21,12 @@ class SendPanels extends React.Component {
   }
 
   repeatCheck(){
-    if(this.props.alarm.repeat.length == null){
-      console.log('null');
-    }
-    else{
-      return <small>Repeat</small>
-    }
+      if(this.props.alarm.repeat.length == null){
+        console.log('null');
+      }
+      else{
+        return <small>Repeat</small>
+      }
   }
 
   getImage(id){

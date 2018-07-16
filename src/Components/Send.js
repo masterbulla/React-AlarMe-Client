@@ -14,6 +14,7 @@ class Send extends Component{
         }
         this.eachAlarm   = this.eachAlarm.bind(this);
         this.getImage    = this.getImage.bind(this);
+        this.getSend     =  this.getSend.bind(this);
       }
 
       onClickHandler = ()=>{
@@ -30,13 +31,14 @@ class Send extends Component{
         var profile = global.GmailID;
 
         if(profile === null)
-            url ="https://alarme-app.herokuapp.com/sendalarm?id=";
+            url ="https://alarme-app.herokuapp.com/sendalarms?id=";
         else
-            url ="https://alarme-app.herokuapp.com/sendalarm?id="+profile;
+            url ="https://alarme-app.herokuapp.com/sendalarms?id="+profile;
 
         fetch(url).then((res) => {
             if(res.statusText === 'Internal Server Error')
                 return 'error';
+            console.log(res);
             return res.json();
         }).then((data) => {
             if(data === 'error'){
@@ -92,7 +94,6 @@ class Send extends Component{
                 result = Math.abs(now - now2);
             }
                 return result;
-
     }
 
     checkIfAwake(){
@@ -113,7 +114,6 @@ class Send extends Component{
             }
             data.getAlarm.map((data) => {
                 if(data.someoneWakeYouUp == true){
-                    console.log("true")
                     var result = "OPEN CALL";
                         var url2 ="https://alarme-app.herokuapp.com/getalarmbyid?id="+data._id;
                          fetch(url2).then((res) => {
@@ -132,7 +132,6 @@ class Send extends Component{
                             })
                         
                     }else{
-                        console.log("false")
                         return 0;
                     }
                 }
@@ -145,7 +144,7 @@ class Send extends Component{
         return (images[id]);
     }
 
-    render(){
+    getSend(){
         return(
             <div>
                 <div id="popover" className={"btn-group pull-right " + (this.checkIfAwake() == 0  ? 'hidden' : 'show call-popover')}> 
@@ -174,10 +173,16 @@ class Send extends Component{
                         </div>        
                     </div>
                 </div>
-                {this.state.alarm.sort((a, b) => {return this.calcul(a) - this.calcul(b)}).map(this.eachAlarm)}
-               
+        </div>
+        );
+    }
 
-            </div>
+    render(){
+        return(
+            <div>
+                {this.state.popover ? this.getSend(): null}
+                {this.state.alarm.sort((a, b) => {return this.calcul(a) - this.calcul(b)}).map(this.eachAlarm)}
+           </div>
         );
     }
   
