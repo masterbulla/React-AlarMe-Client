@@ -30,7 +30,7 @@ class Setting extends Component{
         var profile = global.GmailID;
         
         if(profile === '')
-            url ="https://alarme-app.herokuapp.com/setting?id=114530631895967788443";
+            url ="https://alarme-app.herokuapp.com/setting?id=";
         else
             url =`https://alarme-app.herokuapp.com/setting?id=${profile}`;
 

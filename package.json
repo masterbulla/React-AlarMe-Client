@@ -1,7 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "homepage": "./",
+  "homepage": "http://shenkar.html5-book.co.il/2017-2018/dcs/dev_171/",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^1.3.0",

@@ -32,7 +32,7 @@ class Send extends Component{
         var profile = global.GmailID;
 
         if(profile === '')
-            url ="https://alarme-app.herokuapp.com/sendalarms?id=114530631895967788443";
+            url ="https://alarme-app.herokuapp.com/sendalarms?id=";
         else
             url ="https://alarme-app.herokuapp.com/sendalarms?id="+profile;
 

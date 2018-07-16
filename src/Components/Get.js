@@ -21,10 +21,7 @@ class Get extends Component{
         var profile = global.GmailID;
         
         if(profile === ''){
-            url ="https://alarme-app.herokuapp.com/getalarm?id=114530631895967788443";
-            global.GmailID = '114530631895967788443';
-            global.fullName = 'Vladimir Putin';
-            global.age = 65;
+            url ="https://alarme-app.herokuapp.com/getalarm?id=";
         }
         else
             url ="https://alarme-app.herokuapp.com/getalarm?id="+profile;

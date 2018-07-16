@@ -33,7 +33,8 @@ class Panels extends React.Component {
       max: numbers[1],
       textFieldValue: '',
       time: this.props.alarm.time,
-      country: this.props.alarm.filter.country
+      country: this.props.alarm.filter.country,
+      alarm: global.alarm
     };
 
     this.repeatCheck  = this.repeatCheck.bind(this);
@@ -203,14 +204,20 @@ class Panels extends React.Component {
       var ms = moment(now,"DD/MM/YYYY HH:mm:ss").diff(moment(then,"DD/MM/YYYY HH:mm:ss"));
       var d = moment.duration(ms);
       var s = Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss");
-      return s;
+      
+      console.log(s);
+      if(s[0] == '-')
+        return s.substring(1,3);
+      else
+        return s.substring(0,2);
 
   }
 
   render() {
     //const percentage = this.calculateSleptTime();
    
-    const percentage = this.testFunction();
+    var percentage = this.testFunction();
+    console.log(percentage);
     return (
       <div>
         <Panel id="collapsible-panel-example-2"  defaultExpanded={this.state.open}>
@@ -218,7 +225,7 @@ class Panels extends React.Component {
                 <Switch checked={this.state.checkedB} onChange={this.handleChange('checkedB')} value="checkedB" color="primary" className="switch"/>
                     <Panel.Title toggle>
                           <div className="circularProgressbar">
-                                <CircularProgressbar percentage={percentage.substring(1,3)} text={`${percentage.substring(1,3)}\nHR`} strokeWidth={10}/>
+                                <CircularProgressbar percentage={percentage} text={`${percentage}\nHR`} strokeWidth={10}/>
                           </div>
                           <span className="timeSpan" onClick={(e)=> this.setState({open: true })}>
                                 {this.state.time}
