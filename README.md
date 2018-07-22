@@ -1,3 +1,8 @@
+<img src="https://github.com/benivalotker/AlarMe-Client/blob/master/src/static/get.PNG" >
+<img src="https://github.com/benivalotker/AlarMe-Client/blob/master/src/static/setting.PNG">
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
